@@ -8,7 +8,7 @@ module Reflection
       def run!(args = nil)
         options = parse_options(args)
         if options == false
-          Reflection::Suport.exit_with_error("Ahh ja, missing arguments. Please read 'reflection --help' to get a feeling of how it works.")
+          Reflection::Support.exit_with_error("Ahh ja, missing arguments. Please read 'reflection --help' to get a feeling of how it works.")
         else
           case options.command
           when :apply
