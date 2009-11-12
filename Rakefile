@@ -7,7 +7,7 @@ begin
     gem.name = "reflection"
     gem.summary = %Q{TODO: one-line summary of your gem}
     gem.description = %Q{TODO: longer description of your gem}
-    gem.email = "treas@dynamicdudes.com"
+    gem.email = "rubyphunk@gmail.com"
     gem.homepage = "http://github.com/rubyphunk/reflection"
     gem.authors = ["rubyphunk"]
     gem.add_development_dependency "rspec", ">= 1.2.9"
@@ -34,7 +34,7 @@ end
 task :spec => :check_dependencies
 
 begin
-  require 'reek/rake_task'
+  require 'reek/adapters/rake_task'
   Reek::RakeTask.new do |t|
     t.fail_on_error = true
     t.verbose = false

@@ -8,14 +8,15 @@ module Reflection
       def run!(args = nil)
         options = parse_options(args)
         if options == false
-          puts "Ahh ja, missing arguments. Please read 'reflection --help' to get a feeling of how it works."
-          exit(1)
+          Reflection::Suport.exit_with_error("Ahh ja, missing arguments. Please read 'reflection --help' to get a feeling of how it works.")
         else
           case options.command
           when :apply
             Reflection::Command::Apply.run!(options)
           when :stash
             Reflection::Command::Stash.run!(options)
+          else
+            Reflection::Support.exit_with_error("Couldn't identify command. Please run 'reflection --help'.")
           end
         end
       end
