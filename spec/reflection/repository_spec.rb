@@ -12,6 +12,23 @@ describe Reflection::Repository do
     @mock_git_repo.stub!(:remote).and_return(@mock_remote = mock('Git::Remote'))
   end
   
+  describe 'new_from_path' do
+    it 'should create an instance by path' do
+      Git.stub!(:open).and_return(@mock_git_repo)
+      @mock_remote.stub!(:url).and_return('git@example.com:repo.git')
+      instance = Reflection::Repository.new_from_path('/test/repo/path')
+      instance.should be_instance_of(Reflection::Repository)
+      instance.url.should eql('git@example.com:repo.git')
+    end
+    
+    it 'should raise an error if path is not a valid git repository' do
+      lambda do
+        Reflection::Repository.stub!(:exists?).and_return(false)
+        Reflection::Repository.new_from_path('/test/repo/path')
+      end.should raise_error(/not a valid/)
+    end
+  end
+  
   describe 'exists?' do
     it 'should return true if a repository exists in path' do
       Git.should_receive(:open).with('/test/path').and_return(@mock_git_repo)

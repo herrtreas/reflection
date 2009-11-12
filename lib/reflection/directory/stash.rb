@@ -12,10 +12,6 @@ module Reflection
         @path = File.join(Reflection.home.path, repository.identifier)
       end
     
-      def exists?
-        File.exist?(self.path)
-      end
-    
       def validate_repository
         if Reflection::Repository.exists?(self.path) && !@repository.same_in_path?(self.path)
           Reflection::Support.exit_with_error "The stash directory '#{self.path}' is a repository, but not the one you specified (--repository)."

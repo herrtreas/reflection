@@ -22,7 +22,7 @@ describe Reflection::Command::Stash do
 
     it 'should fail if the directory is a repository' do
       Reflection::Repository.stub!(:exists?).and_return(true) 
-      Reflection::Support.should_receive(:exit_with_error)
+      Reflection::Support.should_receive(:exit_with_error).twice
       @subject.run!
     end
     

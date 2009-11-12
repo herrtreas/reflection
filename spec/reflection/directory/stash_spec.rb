@@ -13,13 +13,6 @@ describe Reflection::Directory::Stash do
     end
   end
   
-  describe '#exists?' do
-    it 'should now if the path exists' do
-      File.stub!(:exist?).and_return(true)
-      @stash_directory.exists?.should be_true
-    end
-  end
-  
   describe '#validate_repository' do
     before(:each) do
       Reflection::Repository.stub!(:exists?).and_return(true)
