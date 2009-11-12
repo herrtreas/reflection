@@ -7,14 +7,14 @@ describe Reflection::CLI do
   
   describe '#run!' do
     it 'should parse commandline options' do
-      @subject.should_receive(:parse_options).and_return(OpenStruct.new(:command => :nothing))
+      Reflection::Command::Stash.stub!(:run!)
+      @subject.should_receive(:parse_options).and_return(OpenStruct.new(:command => :stash))
       @subject.run!
     end
     
     it 'should fail gracefully displaying a message if parse_options returns false' do
+      Reflection::Support.should_receive(:exit_with_error).with(/reflection --help/)
       @subject.stub!(:parse_options).and_return(false)
-      @subject.should_receive(:exit)
-      @subject.should_receive(:puts).with(/reflection --help/)
       @subject.run!
     end
     
