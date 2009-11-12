@@ -1,0 +1,7 @@
++ Remove stash directory if its empty (or reinit)
++ Add Logger (Reflection::Support.log)
++ Add DB Dumper (include in cli-opt-parser)
++ After command callbacks: Twitter, Campfire on Serverside
++ List existing reflections in client side
+  + Allow to apply any (git) version, not just the latest
++ Allow collection of assets from Akamai and/or CloudFront

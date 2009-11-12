@@ -3,7 +3,7 @@
 
 ## TEXTMATE
 *.tmproj
-tmtags
+*.tmtags
 
 ## EMACS
 *~
