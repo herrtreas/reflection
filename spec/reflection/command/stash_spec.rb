@@ -69,20 +69,30 @@ describe Reflection::Command::Stash do
   describe '#stash_directory_into_repository' do
     before(:each) do
       @mock_stash_repository = mock('StashRepository')
-      @mock_stash_directory = mock('Directory::Stash', :repository => @mock_stash_repository, :path => '/home/stash/path')
-      FileUtils.stub!(:mv)
+      @mock_stash_directory = mock('Directory::Stash', :git_index => '/home/stash/path/.git', :path => '/home/stash/path')
+      @mock_stash_repository.stub!(:repository).and_return(@mock_stash_repository)
+      @mock_target_directory = mock('Directory::Base', :name => 'assets')
+      @mock_target_parent_directory = mock('Directory::Parent', :path => '/home/tmp', :git_index => '/home/tmp/.git')
+      @mock_target_directory.stub!(:parent).and_return(@mock_target_parent_directory)
+
+      @subject.stub!(:copy_stash_repository_git_index_to_target)
+      @subject.stub!(:commit_and_push_files)
+      @subject.stub!(:move_stash_repository_git_index_back)
     end
     
     it "should move the stash-repository-directory (.git) one level above the asset directory path" do
-      pending
-      FileUtils.should_receive(:mv).with('/home/stash/path/.git', '/home/tmp')
-      @subject.stash_directory_into_repository(@mock_stash_directory)
+      @subject.should_receive(:copy_stash_repository_git_index_to_target).with("/home/stash/path/.git", "/home/tmp")
+      @subject.stash_directory_into_repository(@mock_stash_directory, @mock_target_directory)
     end
     
-    it "should add the contents of directory to the repository" do
+    it "should add and push the contents of directory to the repository" do
+      @subject.should_receive(:commit_and_push_files).with("/home/tmp", "assets")
+      @subject.stash_directory_into_repository(@mock_stash_directory, @mock_target_directory)
     end
     
-    it "should git-commit and git-push the repository"
-    it "should move the directory's .git directory back to stash-directory-repository"    
+    it "should move the directory's .git directory back to stash-directory-repository" do
+      @subject.should_receive(:move_stash_repository_git_index_back).with("/home/tmp/.git", "/home/stash/path")
+      @subject.stash_directory_into_repository(@mock_stash_directory, @mock_target_directory)
+    end
   end
 end

@@ -39,16 +39,29 @@ module Reflection
       end
 
       def stash_directory_into_repository(stash_directory, target_directory)
-        FileUtils.cp_r(stash_directory.git_index, target_directory.parent.path)
-        
-        repository = Repository.new_from_path(target_directory.parent.path)
-        repository.commit_all_new_files(target_directory.name)
-        repository.push
-
-        FileUtils.rm_r(File.join(stash_directory.path, "/.git"))
-        FileUtils.mv(target_directory.parent.git_index, stash_directory.path)
+        copy_stash_repository_git_index_to_target(stash_directory.git_index, target_directory.parent.path)
+        commit_and_push_files(target_directory.parent.path, target_directory.name)
+        move_stash_repository_git_index_back(target_directory.parent.git_index, stash_directory.path)
       end
-      
+
+
+      private
+
+        def copy_stash_repository_git_index_to_target(source, target)
+          FileUtils.cp_r(source, target)
+        end
+
+        def commit_and_push_files(repository_path, target)
+          repository = Repository.new_from_path(repository_path)
+          repository.commit_all_new_files(target)
+          repository.push
+        end
+
+        def move_stash_repository_git_index_back(source, target)
+          FileUtils.rm_r(File.join(target, "/.git"))
+          FileUtils.mv(source, target)
+        end
+
     end
   end
 end
