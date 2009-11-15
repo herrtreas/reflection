@@ -1,6 +1,8 @@
 = reflection
 
-Description goes here.
+Helps you keeping your development machine in sync with production.
+Currently just a snapshot, so don't use it for any important stuff (you could loose important data).
+
 
 == Note on Patches/Pull Requests
  
@@ -15,4 +17,4 @@ Description goes here.
 
 == Copyright
 
-Copyright (c) 2009 rubyphunk. See LICENSE for details.
+Copyright (c) 2009 Andreas Wolff. See LICENSE for details.

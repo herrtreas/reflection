@@ -4,12 +4,16 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "reflection"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.name = "Reflection"
+    gem.summary = %Q{Helps you keeping your development machine in sync with production.}
+    gem.description = %Q{
+      Reflection is designed to keep your production assets (database comming soon) in sync with your development system.
+      It uses a shared git repository to store these files, which allows you to mirror your production environment without the need of 
+      direct access to your production servers.
+    }
     gem.email = "rubyphunk@gmail.com"
     gem.homepage = "http://github.com/rubyphunk/reflection"
-    gem.authors = ["rubyphunk"]
+    gem.authors = ["Andreas Wolff"]
     gem.add_development_dependency "rspec", ">= 1.2.9"
     gem.add_dependency "git", ">= 1.2.5"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
