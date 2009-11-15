@@ -4,7 +4,7 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "Reflection"
+    gem.name = "reflection"
     gem.summary = %Q{Helps you keeping your development machine in sync with production.}
     gem.description = %Q{
       Reflection is designed to keep your production assets (database comming soon) in sync with your development system.
