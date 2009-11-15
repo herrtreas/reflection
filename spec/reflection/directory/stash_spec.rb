@@ -4,12 +4,12 @@ describe Reflection::Directory::Stash do
   before(:each) do
     Reflection.home = mock('Home', :path => '/HOME_DIR/.reflection')
     @mock_repository = mock("Repository", :identifier => '_identifier_', :url => 'git.rubyphunk.com')
-    @stash_directory = Reflection::Directory::Stash.new(@mock_repository)
+    @stash_directory = Reflection::Directory::Stash.new(@mock_repository, 'stash')
   end
   
   describe '#path' do
-    it 'should generate the path to the stash repository-directory ~/.reflection/-md5_hash-' do
-      @stash_directory.path.should eql("/HOME_DIR/.reflection/_identifier_")
+    it 'should generate the path to the stash repository-directory ~/.reflection/stash/-md5_hash-' do
+      @stash_directory.path.should eql("/HOME_DIR/.reflection/stash/_identifier_")
     end
   end
   

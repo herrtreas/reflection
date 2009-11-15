@@ -4,7 +4,7 @@ module Reflection
     
       attr_accessor :repository
     
-      def initialize(repository, identifier_prefix = nil)
+      def initialize(repository, identifier_prefix)
         @repository = repository
         @identifier_prefix = identifier_prefix
       end
