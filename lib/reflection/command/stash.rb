@@ -11,37 +11,31 @@ module Reflection
       def run!
         Reflection.log.info "Stashing '#{options.directory}'.."
 
-        stash_directory = Directory::Stash.new(Reflection::Repository.new(options.repository))
+        stash_directory = Directory::Stash.new(Reflection::Repository.new(options.repository), 'stash')
         target_directory = Directory::Base.new(options.directory)
 
-        if Repository.exists?(target_directory.path)
-          Support.exit_with_error "The specified --directory is a repository. Reflection is afraid of breaking something, so it won't touch it. Pleace specify another one.."
-        end
-
-        if Repository.exists?(target_directory.parent.path)
-          Support.exit_with_error "The parent of the specified --directory is a repository. Reflection is afraid of breaking something, so it won't touch it. Pleace specify another one.."
-        end
-
+        verify_that_target_is_not_a_repository(target_directory)
+        
         prepare_stash_repository(stash_directory)
         stash_directory_into_repository(stash_directory, target_directory)
 
         Reflection.log.info "Stash Command done."
       end
 
-      def prepare_stash_repository(directory)
+      def prepare_stash_repository(stash_directory)
         Reflection.log.debug "Preparing stash repository.."
 
-        if directory.exists?
-          directory.validate_repository
+        if stash_directory.exists?
+          stash_directory.validate_repository
         else
-          directory.clone_repository
+          stash_directory.clone_repository
         end
       end
 
       def stash_directory_into_repository(stash_directory, target_directory)
-        copy_stash_repository_git_index_to_target(stash_directory.git_index, target_directory.parent.path)
-        commit_and_push_files(target_directory.parent.path, target_directory.name)
-        move_stash_repository_git_index_back(target_directory.parent.git_index, stash_directory.path)
+        copy_stash_repository_git_index_to_target(stash_directory.git_index, target_directory.path)
+        commit_and_push_files(target_directory.path, target_directory.name)
+        move_stash_repository_git_index_back(target_directory.git_index, stash_directory.path)
       end
 
 
@@ -53,7 +47,7 @@ module Reflection
 
         def commit_and_push_files(repository_path, target)
           repository = Repository.new_from_path(repository_path)
-          repository.commit_all_new_files(target)
+          repository.commit_all_new_files
           repository.push
         end
 

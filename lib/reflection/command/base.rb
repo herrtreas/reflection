@@ -16,6 +16,13 @@ module Reflection
       def validate
         Reflection::Validations
       end
+      
+      def verify_that_target_is_not_a_repository(target_directory)
+        if Repository.exists?(target_directory.path)
+          Support.exit_with_error "The specified --directory is a repository. Reflection is afraid of breaking something, so it won't touch it. Pleace specify another one.."
+        end
+      end
+      
     end
   end
 end

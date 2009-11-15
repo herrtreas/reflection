@@ -1,6 +1,6 @@
-+ Remove stash directory if its empty (or reinit)
-+ Add Logger (Reflection::Support.log)
 + Add DB Dumper (include in cli-opt-parser)
++ Remove stash directory if its empty (on reinit)
++ Add Logger (Reflection::Support.log)
 + After command callbacks: Twitter, Campfire on Serverside
 + List existing reflections in client side
   + Allow to apply any (git) version, not just the latest

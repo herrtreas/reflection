@@ -1,8 +1,52 @@
+require 'fileutils'
+
 module Reflection
   module Command
-    module Apply
-      class << self
+    class Apply < Reflection::Command::Base
+
+      def validate!
+        validate.existence_of options.directory
       end
+
+      def run!
+        stash_directory = Directory::Stash.new(Reflection::Repository.new(options.repository), 'apply')
+        target_directory = Directory::Base.new(options.directory)
+
+        get_user_approval_for_cleaning_target(target_directory)
+        verify_that_target_is_not_a_repository(target_directory)
+
+        Reflection.log.info "Applying '#{options.repository}' >> '#{options.directory}'.."
+
+        target_directory.clean!
+
+        if stash_directory.exists?
+          stash_directory.validate_repository
+          stash_directory.copy_git_index_to(target_directory.path)
+          repo = Repository.new_from_path(target_directory.path)
+          repo.reset!
+          repo.pull
+          stash_directory.get_git_index_from(target_directory.path)
+        else
+          stash_directory.clone_repository
+          stash_directory.move_content_to(target_directory.path)
+          stash_directory.get_git_index_from(target_directory.path)
+        end
+
+        Reflection.log.info "Apply Command done."
+      end
+
+
+      private
+
+        def get_user_approval_for_cleaning_target(target_directory)
+          puts "\nIn order to get a fresh copy of your files, Reflection will have to remove all files under '#{target_directory.path}'."
+          puts "If you're sure, hit <enter> to proceed.."
+
+          unless STDIN.getc == 10
+            puts "Aborting.."
+            exit
+          end
+        end
     end
   end
 end

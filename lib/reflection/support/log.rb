@@ -7,7 +7,7 @@ module Reflection
       end
       
       def info(message)
-        puts "* #{message}" if message && !message.empty?
+        puts "** #{message}" if message && !message.empty?
       end
       
     end

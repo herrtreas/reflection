@@ -38,14 +38,20 @@ module Reflection
       (git_repo.remote && git_repo.remote.url == self.url) || false
     end
     
+    def reset!
+      Reflection.log.debug "Resetting target to HEAD"
+      repo = Git.open(self.path)
+      repo.reset_hard
+    end
+    
     def clone(path)
       Git.clone(self.url, path)
     end
     
-    def commit_all_new_files(commit_files_path)
+    def commit_all_new_files
       repo = Git.open(self.path)
       Reflection.log.debug "Committing all changes.."
-      Reflection.log.debug(repo.add(commit_files_path))
+      Reflection.log.debug(repo.add)
       Reflection.log.debug(repo.commit_all("Updated stash.")) rescue true
     end
     
@@ -54,5 +60,12 @@ module Reflection
       Reflection.log.debug "Pushing commit.."
       Reflection.log.debug(repo.push)
     end
+    
+    def pull
+      repo = Git.open(self.path)
+      Reflection.log.debug "Pulling.."
+      Reflection.log.debug(repo.pull)
+    end
+    
   end
 end

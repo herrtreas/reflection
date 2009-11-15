@@ -4,12 +4,13 @@ module Reflection
     
       attr_accessor :repository
     
-      def initialize(repository)
+      def initialize(repository, identifier_prefix = nil)
         @repository = repository
+        @identifier_prefix = identifier_prefix
       end
     
       def path
-        @path = File.join(Reflection.home.path, repository.identifier)
+        @path = File.join(Reflection.home.path, @identifier_prefix, repository.identifier)
       end
     
       def validate_repository
