@@ -13,19 +13,19 @@ describe Reflection::Config do
     
     it 'should parse a yaml file if the first arg is an existing file' do
       @mock_config.should_receive(:read!).with('/tmp')
-      Reflection::Config.parse('/tmp')
+      Reflection::Config.parse(['/tmp'])
     end
     
     it 'should parse args as options' do
-      @mock_config.should_receive(:parse_command_line_options).with('-s -d')
-      Reflection::Config.parse('-s -d')
+      @mock_config.should_receive(:parse_command_line_options).with(['-s', '-d'])
+      Reflection::Config.parse(['-s', '-d'])
     end
 
     it 'should write options to configuration file if --write params is set' do
       @mock_config.should_receive(:write).with('/test/path')
       @mock_config.stub!(:parse_command_line_options)
       @mock_config.stub!(:store_configuration_path).and_return('/test/path')
-      Reflection::Config.parse('-s -d --write /test/path')
+      Reflection::Config.parse(['-s','-d', '--write /test/path'])
     end
 
     it 'should expect a reflection.yml config file in path if args are empty' do
@@ -41,7 +41,7 @@ describe Reflection::Config do
       @config.command = :stash
       @config.repository = 'repo'
       @config.directory = 'dir'
-      @config.to_hash.should eql( @valid_options )
+      @config.to_hash.should == @valid_options
     end
   end
   
