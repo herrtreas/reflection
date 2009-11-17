@@ -2,6 +2,7 @@ require 'rubygems'
 
 module Reflection
   autoload :CLI,              'reflection/cli'
+  autoload :Config,           'reflection/config'
   autoload :Command,          'reflection/command'
   autoload :Directory,        'reflection/directory'
   autoload :Repository,       'reflection/repository'
