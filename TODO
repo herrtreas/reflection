@@ -1,4 +1,3 @@
-+ Add config files ('$ reflection path/to/config')
 + Add DB Dumper (include in cli-opt-parser)
 + Remove stash directory if its empty (on reinit)
 + Add Logger (Reflection::Support.log)

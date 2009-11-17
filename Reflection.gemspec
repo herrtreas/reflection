@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{reflection}
-  s.version = "0.0.2"
+  s.version = "0.3.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Andreas Wolff"]
-  s.date = %q{2009-11-15}
+  s.date = %q{2009-11-17}
   s.default_executable = %q{reflection}
   s.description = %q{
       Reflection is designed to keep your production assets (database comming soon) in sync with your development system.
@@ -38,6 +38,7 @@ Gem::Specification.new do |s|
      "lib/reflection/command/apply.rb",
      "lib/reflection/command/base.rb",
      "lib/reflection/command/stash.rb",
+     "lib/reflection/config.rb",
      "lib/reflection/directory.rb",
      "lib/reflection/directory/base.rb",
      "lib/reflection/directory/stash.rb",
@@ -48,6 +49,7 @@ Gem::Specification.new do |s|
      "lib/reflection/validations.rb",
      "spec/reflection/cli_spec.rb",
      "spec/reflection/command/stash_spec.rb",
+     "spec/reflection/config_spec.rb",
      "spec/reflection/directory/base_spec.rb",
      "spec/reflection/directory/stash_spec.rb",
      "spec/reflection/repository_spec.rb",
@@ -65,6 +67,7 @@ Gem::Specification.new do |s|
   s.test_files = [
     "spec/reflection/cli_spec.rb",
      "spec/reflection/command/stash_spec.rb",
+     "spec/reflection/config_spec.rb",
      "spec/reflection/directory/base_spec.rb",
      "spec/reflection/directory/stash_spec.rb",
      "spec/reflection/repository_spec.rb",
