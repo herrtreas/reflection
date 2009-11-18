@@ -79,8 +79,12 @@ time you run the command, there is no need of cloning it again.
 </p>
 <h4>Now, lets include a database dump</h4>
 <pre class="code">
-  $ <span class='reflection identifier id'>reflection</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='stash identifier id'>stash</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='directory identifier id'>directory</span> <span class='regexp val'>/path/</span><span class='to identifier id'>to</span><span class='div op'>/</span><span class='your identifier id'>your</span><span class='div op'>/</span><span class='assets identifier id'>assets</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='repository identifier id'>repository</span> <span class='git identifier id'>git</span><span class='@your ivar id'>@your</span><span class='minus op'>-</span><span class='shared identifier id'>shared</span><span class='minus op'>-</span><span class='repository identifier id'>repository</span><span class='dot token'>.</span><span class='git identifier id'>git</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='rails identifier id'>rails</span> <span class='regexp val'>/rails/</span><span class='root identifier id'>root</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='rails identifier id'>rails</span><span class='minus op'>-</span><span class='env identifier id'>env</span> <span class='production identifier id'>production</span><span class='lt op'>&lt;</span><span class='regexp val'>/code&gt;
-</span></pre>
+  $ <span class='reflection identifier id'>reflection</span>  <span class='minus op'>-</span><span class='minus op'>-</span><span class='stash identifier id'>stash</span> \
+                <span class='minus op'>-</span><span class='minus op'>-</span><span class='directory identifier id'>directory</span> <span class='regexp val'>/path/</span><span class='to identifier id'>to</span><span class='div op'>/</span><span class='your identifier id'>your</span><span class='div op'>/</span><span class='assets identifier id'>assets</span> \
+                <span class='minus op'>-</span><span class='minus op'>-</span><span class='repository identifier id'>repository</span> <span class='git identifier id'>git</span><span class='@your ivar id'>@your</span><span class='minus op'>-</span><span class='shared identifier id'>shared</span><span class='minus op'>-</span><span class='repository identifier id'>repository</span><span class='dot token'>.</span><span class='git identifier id'>git</span> \
+                <span class='minus op'>-</span><span class='minus op'>-</span><span class='rails identifier id'>rails</span> <span class='regexp val'>/rails/</span><span class='root identifier id'>root</span> \
+                <span class='minus op'>-</span><span class='minus op'>-</span><span class='rails identifier id'>rails</span><span class='minus op'>-</span><span class='env identifier id'>env</span> <span class='production identifier id'>production</span>
+</pre>
 <p>
 This does the same as above, but additionally dumps your production
 database and adds the fresh dump to your repository.
@@ -91,7 +95,12 @@ You too, aren&#8217;t you? So Reflection allows you to store all command
 line options in a config file.
 </p>
 <pre class="code">
-  $ <span class='reflection identifier id'>reflection</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='stash identifier id'>stash</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='directory identifier id'>directory</span> <span class='regexp val'>/path/</span><span class='to identifier id'>to</span><span class='div op'>/</span><span class='your identifier id'>your</span><span class='div op'>/</span><span class='assets identifier id'>assets</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='repository identifier id'>repository</span> <span class='git identifier id'>git</span><span class='@your ivar id'>@your</span><span class='minus op'>-</span><span class='shared identifier id'>shared</span><span class='minus op'>-</span><span class='repository identifier id'>repository</span><span class='dot token'>.</span><span class='git identifier id'>git</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='rails identifier id'>rails</span> <span class='regexp val'>/rails/</span><span class='root identifier id'>root</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='rails identifier id'>rails</span><span class='minus op'>-</span><span class='env identifier id'>env</span> <span class='production identifier id'>production</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='write identifier id'>write</span> <span class='regexp val'>/path/</span><span class='to identifier id'>to</span><span class='div op'>/</span><span class='your identifier id'>your</span><span class='div op'>/</span><span class='config identifier id'>config</span>
+  $ <span class='reflection identifier id'>reflection</span>  <span class='minus op'>-</span><span class='minus op'>-</span><span class='stash identifier id'>stash</span> \
+                <span class='minus op'>-</span><span class='minus op'>-</span><span class='directory identifier id'>directory</span> <span class='regexp val'>/path/</span><span class='to identifier id'>to</span><span class='div op'>/</span><span class='your identifier id'>your</span><span class='div op'>/</span><span class='assets identifier id'>assets</span> \
+                <span class='minus op'>-</span><span class='minus op'>-</span><span class='repository identifier id'>repository</span> <span class='git identifier id'>git</span><span class='@your ivar id'>@your</span><span class='minus op'>-</span><span class='shared identifier id'>shared</span><span class='minus op'>-</span><span class='repository identifier id'>repository</span><span class='dot token'>.</span><span class='git identifier id'>git</span> \
+                <span class='minus op'>-</span><span class='minus op'>-</span><span class='rails identifier id'>rails</span> <span class='regexp val'>/rails/</span><span class='root identifier id'>root</span> \
+                <span class='minus op'>-</span><span class='minus op'>-</span><span class='rails identifier id'>rails</span><span class='minus op'>-</span><span class='env identifier id'>env</span> <span class='production identifier id'>production</span> \
+                <span class='minus op'>-</span><span class='minus op'>-</span><span class='write identifier id'>write</span> <span class='regexp val'>/path/</span><span class='to identifier id'>to</span><span class='div op'>/</span><span class='your identifier id'>your</span><span class='div op'>/</span><span class='config identifier id'>config</span>
 </pre>
 <p>
 The next time you want to run the same command as above (useful for cron),
@@ -106,16 +115,23 @@ This works exactly the same as describe above, but you would use
 --apply instead of --stash:
 </p>
 <pre class="code">
-  $ <span class='reflection identifier id'>reflection</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='apply identifier id'>apply</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='directory identifier id'>directory</span> <span class='regexp val'>/path/</span><span class='to identifier id'>to</span><span class='div op'>/</span><span class='your identifier id'>your</span><span class='div op'>/</span><span class='assets identifier id'>assets</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='repository identifier id'>repository</span> <span class='git identifier id'>git</span><span class='@your ivar id'>@your</span><span class='minus op'>-</span><span class='shared identifier id'>shared</span><span class='minus op'>-</span><span class='repository identifier id'>repository</span><span class='dot token'>.</span><span class='git identifier id'>git</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='rails identifier id'>rails</span> <span class='regexp val'>/rails/</span><span class='root identifier id'>root</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='rails identifier id'>rails</span><span class='minus op'>-</span><span class='env identifier id'>env</span> <span class='development identifier id'>development</span>
+  $ <span class='reflection identifier id'>reflection</span>  <span class='minus op'>-</span><span class='minus op'>-</span><span class='apply identifier id'>apply</span> \
+                <span class='minus op'>-</span><span class='minus op'>-</span><span class='directory identifier id'>directory</span> <span class='regexp val'>/path/</span><span class='to identifier id'>to</span><span class='div op'>/</span><span class='your identifier id'>your</span><span class='div op'>/</span><span class='assets identifier id'>assets</span> \
+                <span class='minus op'>-</span><span class='minus op'>-</span><span class='repository identifier id'>repository</span> <span class='git identifier id'>git</span><span class='@your ivar id'>@your</span><span class='minus op'>-</span><span class='shared identifier id'>shared</span><span class='minus op'>-</span><span class='repository identifier id'>repository</span><span class='dot token'>.</span><span class='git identifier id'>git</span> \
+                <span class='minus op'>-</span><span class='minus op'>-</span><span class='rails identifier id'>rails</span> <span class='regexp val'>/rails/</span><span class='root identifier id'>root</span> \
+                <span class='minus op'>-</span><span class='minus op'>-</span><span class='rails identifier id'>rails</span><span class='minus op'>-</span><span class='env identifier id'>env</span> <span class='development identifier id'>development</span>
 </pre>
 <p>
 This clones or pulls <tt>git@your-shared-repository.git</tt> (again,
 Reflection keeps a version of your Repository in HOME/.reflection/apply),
 copies the content to the specified directory (e.g.
 rails/application/public/assets) and optionally loads the dump into your
-database. As you may have noticed, the Reflection command above got called
-with <tt>--rails-env development</tt>, which loads the dump in your
-development database (as defined by /rails/root/config/database.yml).
+database.
+</p>
+<p>
+As you may have noticed, the Reflection command above got called with
+<tt>--rails-env development</tt>, which loads the dump in your development
+database (as defined by /rails/root/config/database.yml).
 </p>
 <h4>A little productivity hint</h4>
 <p>
@@ -125,6 +141,27 @@ environment is as easy as running:
 </p>
 <pre class="code">
   $ <span class='reflection identifier id'>reflection</span>
+</pre>
+<h2>reflection --help</h2>
+<pre class="code">
+  $ <span class='reflection identifier id'>reflection</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='help identifier id'>help</span>
+  <span class='Usage constant id'>Usage</span><span class='colon op'>:</span> <span class='reflection identifier id'>reflection</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='COMMAND constant id'>COMMAND</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='repository identifier id'>repository</span><span class='assign token'>=</span><span class='GIT_REPO constant id'>GIT_REPO</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='directory identifier id'>directory</span><span class='assign token'>=</span><span class='PATH constant id'>PATH</span>
+   <span class='minus op'>-</span><span class='or or kw'>or</span><span class='minus op'>-</span>
+  <span class='Usage constant id'>Usage</span><span class='colon op'>:</span> <span class='reflection identifier id'>reflection</span> <span class='regexp val'>/path/</span><span class='to identifier id'>to</span><span class='div op'>/</span><span class='reflection identifier id'>reflection</span><span class='minus op'>-</span><span class='config identifier id'>config</span><span class='minus op'>-</span><span class='file identifier id'>file</span><span class='dot token'>.</span><span class='yml identifier id'>yml</span>
+
+  <span class='On constant id'>On</span> <span class='the identifier id'>the</span> <span class='server identifier id'>server</span> <span class='side identifier id'>side</span><span class='colon op'>:</span>
+      <span class='minus op'>-</span><span class='s identifier id'>s</span><span class='comma token'>,</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='stash identifier id'>stash</span>                      <span class='Store constant id'>Store</span> <span class='your identifier id'>your</span> <span class='assets identifier id'>assets</span> <span class='and and kw'>and</span><span class='regexp val'>/or a database dump in a git-repository.
+  On the client side:
+      -a, --apply                      Apply assets and/o</span><span class='r identifier id'>r</span> <span class='a identifier id'>a</span> <span class='database identifier id'>database</span> <span class='dump identifier id'>dump</span> <span class='loaded identifier id'>loaded</span> <span class='from identifier id'>from</span> <span class='a identifier id'>a</span> <span class='git identifier id'>git</span><span class='minus op'>-</span><span class='repository identifier id'>repository</span><span class='dot token'>.</span>
+
+  <span class='Required constant id'>Required</span> <span class='options identifier id'>options</span> <span class='for for kw'>for</span> <span class='both identifier id'>both</span><span class='colon op'>:</span>
+      <span class='minus op'>-</span><span class='r identifier id'>r</span><span class='comma token'>,</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='repository identifier id'>repository</span> <span class='GIT_URL constant id'>GIT_URL</span>         <span class='A constant id'>A</span> <span class='Git constant id'>Git</span> <span class='repository identifier id'>repository</span><span class='lparen token'>(</span><span class='url identifier id'>url</span><span class='rparen token'>)</span> <span class='to identifier id'>to</span> <span class='be identifier id'>be</span> <span class='used identifier id'>used</span> <span class='as identifier id'>as</span> <span class='storage identifier id'>storage</span>
+      <span class='minus op'>-</span><span class='d identifier id'>d</span><span class='comma token'>,</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='directory identifier id'>directory</span> <span class='PATH constant id'>PATH</span>             <span class='Path constant id'>Path</span> <span class='to identifier id'>to</span> <span class='your identifier id'>your</span> <span class='asset identifier id'>asset</span> <span class='directory identifier id'>directory</span>
+
+  <span class='Additional constant id'>Additional</span> <span class='options identifier id'>options</span> <span class='for for kw'>for</span> <span class='both identifier id'>both</span><span class='colon op'>:</span>
+          <span class='minus op'>-</span><span class='minus op'>-</span><span class='rails identifier id'>rails</span> <span class='lbrack token'>[</span><span class='RAILS_ROOT constant id'>RAILS_ROOT</span><span class='rbrack token'>]</span>         <span class='Enable constant id'>Enable</span> <span class='dumping identifier id'>dumping</span><span class='div op'>/</span><span class='applying identifier id'>applying</span> <span class='of identifier id'>of</span> <span class='a identifier id'>a</span> <span class='Rails constant id'>Rails</span> <span class='managed identifier id'>managed</span> <span class='MySQL constant id'>MySQL</span> <span class='database identifier id'>database</span>
+          <span class='minus op'>-</span><span class='minus op'>-</span><span class='rails identifier id'>rails</span><span class='minus op'>-</span><span class='env identifier id'>env</span> <span class='lbrack token'>[</span><span class='ENV constant id'>ENV</span><span class='rbrack token'>]</span>            <span class='Rails constant id'>Rails</span> <span class='environment identifier id'>environment</span> <span class='to identifier id'>to</span> <span class='instrument identifier id'>instrument</span>
+          <span class='minus op'>-</span><span class='minus op'>-</span><span class='write identifier id'>write</span> <span class='lbrack token'>[</span><span class='FILE constant id'>FILE</span><span class='rbrack token'>]</span>               <span class='Create constant id'>Create</span> <span class='a identifier id'>a</span> <span class='configuration identifier id'>configuration</span> <span class='FILE constant id'>FILE</span> <span class='from identifier id'>from</span> <span class='the identifier id'>the</span> <span class='current identifier id'>current</span> <span class='commandline identifier id'>commandline</span> <span class='options identifier id'>options</span>
 </pre>
 <h2>Note on Patches/Pull Requests</h2>
 <ul>
@@ -154,7 +191,7 @@ Copyright &#169; 2009 Andreas Wolff. See LICENSE for details.
 </div></div>
     
     <div id="footer">
-  Generated on Wed Nov 18 18:05:51 2009 by 
+  Generated on Wed Nov 18 18:17:10 2009 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
   0.4.0 (ruby-1.8.7).
 </div>

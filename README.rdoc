@@ -33,7 +33,11 @@ Reflection keeps a local version of your repository in HOME/.reflection/stash. S
 
 ==== Now, lets include a database dump
 
-  $ reflection --stash --directory /path/to/your/assets --repository git@your-shared-repository.git --rails /rails/root --rails-env production</code>
+  $ reflection  --stash \ 
+                --directory /path/to/your/assets \ 
+                --repository git@your-shared-repository.git \ 
+                --rails /rails/root \
+                --rails-env production
 
 This does the same as above, but additionally dumps your production database and adds the fresh dump to your repository.
 
@@ -43,7 +47,12 @@ This does the same as above, but additionally dumps your production database and
 You too, aren't you? So Reflection allows you to store all command line options in a config file.
 
 
-  $ reflection --stash --directory /path/to/your/assets --repository git@your-shared-repository.git --rails /rails/root --rails-env production --write /path/to/your/config
+  $ reflection  --stash \ 
+                --directory /path/to/your/assets \ 
+                --repository git@your-shared-repository.git \ 
+                --rails /rails/root \ 
+                --rails-env production \ 
+                --write /path/to/your/config
 
 
 The next time you want to run the same command as above (useful for cron), you could simply call Reflection with:
@@ -55,9 +64,15 @@ The next time you want to run the same command as above (useful for cron), you c
 
 This works exactly the same as describe above, but you would use --apply instead of --stash:
 
-  $ reflection --apply --directory /path/to/your/assets --repository git@your-shared-repository.git --rails /rails/root --rails-env development
+  $ reflection  --apply \ 
+                --directory /path/to/your/assets \ 
+                --repository git@your-shared-repository.git \ 
+                --rails /rails/root \ 
+                --rails-env development
 
-This clones or pulls <tt>git@your-shared-repository.git</tt> (again, Reflection keeps a version of your Repository in HOME/.reflection/apply), copies the content to the specified directory (e.g. rails/application/public/assets) and optionally loads the dump into your database. As you may have noticed, the Reflection command above got called with <tt>--rails-env development</tt>, which loads the dump in your development database (as defined by /rails/root/config/database.yml).
+This clones or pulls <tt>git@your-shared-repository.git</tt> (again, Reflection keeps a version of your Repository in HOME/.reflection/apply), copies the content to the specified directory (e.g. rails/application/public/assets) and optionally loads the dump into your database. 
+
+As you may have noticed, the Reflection command above got called with <tt>--rails-env development</tt>, which loads the dump in your development database (as defined by /rails/root/config/database.yml).
 
 
 ==== A little productivity hint
@@ -65,7 +80,28 @@ This clones or pulls <tt>git@your-shared-repository.git</tt> (again, Reflection 
 If you have a <tt>reflection.yml</tt> config file in your current application-development-directory, syncing your server-production environment is as easy as running:
 
   $ reflection
+  
 
+== reflection --help
+
+  $ reflection --help
+  Usage: reflection --COMMAND --repository=GIT_REPO --directory=PATH
+   -or-
+  Usage: reflection /path/to/reflection-config-file.yml
+ 
+  On the server side:
+      -s, --stash                      Store your assets and/or a database dump in a git-repository.
+  On the client side:
+      -a, --apply                      Apply assets and/or a database dump loaded from a git-repository.
+ 
+  Required options for both:
+      -r, --repository GIT_URL         A Git repository(url) to be used as storage
+      -d, --directory PATH             Path to your asset directory
+ 
+  Additional options for both:
+          --rails [RAILS_ROOT]         Enable dumping/applying of a Rails managed MySQL database
+          --rails-env [ENV]            Rails environment to instrument
+          --write [FILE]               Create a configuration FILE from the current commandline options
 
 
 == Note on Patches/Pull Requests
