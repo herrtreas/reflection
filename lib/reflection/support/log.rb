@@ -2,8 +2,10 @@ module Reflection
   module Support
     class Log
       
+      attr_accessor :verbose
+      
       def debug(message)
-        puts "** #{message}" if message && !message.empty?
+        puts "** #{message}" if Reflection.verbose == true && message && !message.empty?
       end
       
       def info(message)

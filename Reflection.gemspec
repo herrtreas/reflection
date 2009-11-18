@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{reflection}
-  s.version = "0.4.0"
+  s.version = "0.4.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Andreas Wolff"]
-  s.date = %q{2009-11-18}
+  s.date = %q{2009-11-19}
   s.default_executable = %q{reflection}
   s.description = %q{
       Reflection is designed to keep your development system in sync with your production system's files and database (by dumping).
@@ -25,6 +25,7 @@ Gem::Specification.new do |s|
   s.files = [
     ".document",
      ".gitignore",
+     ".yardoc",
      "LICENSE",
      "README.rdoc",
      "Rakefile",
@@ -32,6 +33,36 @@ Gem::Specification.new do |s|
      "TODO",
      "VERSION",
      "bin/reflection",
+     "doc/Reflection.html",
+     "doc/Reflection/CLI.html",
+     "doc/Reflection/Command.html",
+     "doc/Reflection/Command/Apply.html",
+     "doc/Reflection/Command/Base.html",
+     "doc/Reflection/Command/Stash.html",
+     "doc/Reflection/Config.html",
+     "doc/Reflection/ConfigArgumentError.html",
+     "doc/Reflection/Directory.html",
+     "doc/Reflection/Directory/Base.html",
+     "doc/Reflection/Directory/Stash.html",
+     "doc/Reflection/Rails.html",
+     "doc/Reflection/Repository.html",
+     "doc/Reflection/Support.html",
+     "doc/Reflection/Support/Home.html",
+     "doc/Reflection/Support/Log.html",
+     "doc/Reflection/Validations.html",
+     "doc/_index.html",
+     "doc/class_list.html",
+     "doc/css/common.css",
+     "doc/css/full_list.css",
+     "doc/css/style.css",
+     "doc/file.README.html",
+     "doc/file_list.html",
+     "doc/index.html",
+     "doc/js/app.js",
+     "doc/js/full_list.js",
+     "doc/js/jquery.js",
+     "doc/method_list.html",
+     "doc/top-level-namespace.html",
      "lib/reflection.rb",
      "lib/reflection/cli.rb",
      "lib/reflection/command.rb",

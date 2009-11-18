@@ -14,6 +14,7 @@ module Reflection
     attr_accessor :rails_root
     attr_accessor :rails_environment
     attr_accessor :store_configuration_path
+    attr_accessor :verbose
     
     def self.parse(args = [])
       config = Config.new
@@ -35,7 +36,8 @@ module Reflection
         :repository => self.repository, 
         :directory => self.directory,
         :rails_root => self.rails_root,
-        :rails_environment => self.rails_environment
+        :rails_environment => self.rails_environment,
+        :verbose => self.verbose
       }
     end
     
@@ -45,6 +47,7 @@ module Reflection
       self.repository = hash[:repository]
       self.rails_root = hash[:rails_root]
       self.rails_environment = hash[:rails_environment]
+      self.verbose = Reflection.verbose = hash[:verbose]
     end
 
     def write(path)
@@ -110,6 +113,11 @@ module Reflection
         
         opts.on("--write [FILE]", "Create a configuration FILE from the current commandline options") do |config_file_path|
           self.store_configuration_path = config_file_path if config_file_path
+        end
+
+        opts.on("-v", "--verbose", "Include debug information in output") do
+          self.verbose = true
+          Reflection.verbose = true
         end
       end
 

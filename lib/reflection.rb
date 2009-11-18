@@ -14,6 +14,7 @@ module Reflection
     
     attr_accessor :home
     attr_accessor :log
+    attr_accessor :verbose
     
     def boot!(args)
       @log = Reflection::Support::Log.new
