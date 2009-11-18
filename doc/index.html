@@ -61,23 +61,16 @@ database dump into your local database
 <p>
 Reflection is a gem, hosted on Gemcutter:
 </p>
-<p>
-<code>
-</p>
 <pre class="code">
   <span class='gem identifier id'>gem</span> <span class='install identifier id'>install</span> <span class='gemcutter identifier id'>gemcutter</span>
   <span class='gem identifier id'>gem</span> <span class='tumble identifier id'>tumble</span>
   <span class='gem identifier id'>gem</span> <span class='install identifier id'>install</span> <span class='reflection identifier id'>reflection</span>
 </pre>
-<p>
-</code>
-</p>
 <h2>Stashing your production data</h2>
 <h4>The simplest form:</h4>
-<p>
-<tt>$ reflection --stash --directory /path/to/your/assets --repository
-git@your-shared-repository.git</tt>
-</p>
+<pre class="code">
+  $ <span class='reflection identifier id'>reflection</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='stash identifier id'>stash</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='directory identifier id'>directory</span> <span class='regexp val'>/path/</span><span class='to identifier id'>to</span><span class='div op'>/</span><span class='your identifier id'>your</span><span class='div op'>/</span><span class='assets identifier id'>assets</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='repository identifier id'>repository</span> <span class='git identifier id'>git</span><span class='@your ivar id'>@your</span><span class='minus op'>-</span><span class='shared identifier id'>shared</span><span class='minus op'>-</span><span class='repository identifier id'>repository</span><span class='dot token'>.</span><span class='git identifier id'>git</span>
+</pre>
 <p>
 This will clone <tt>git@your-shared-repository.git</tt> and add the
 directory <tt>/path/to/your/assets</tt> to the repository. Reflection keeps
@@ -85,11 +78,9 @@ a local version of your repository in HOME/.reflection/stash. So the next
 time you run the command, there is no need of cloning it again.
 </p>
 <h4>Now, lets include a database dump</h4>
-<p>
-<tt>$ reflection --stash --directory /path/to/your/assets --repository
-git@your-shared-repository.git --rails /rails/root --rails-env
-production</tt>
-</p>
+<pre class="code">
+  $ <span class='reflection identifier id'>reflection</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='stash identifier id'>stash</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='directory identifier id'>directory</span> <span class='regexp val'>/path/</span><span class='to identifier id'>to</span><span class='div op'>/</span><span class='your identifier id'>your</span><span class='div op'>/</span><span class='assets identifier id'>assets</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='repository identifier id'>repository</span> <span class='git identifier id'>git</span><span class='@your ivar id'>@your</span><span class='minus op'>-</span><span class='shared identifier id'>shared</span><span class='minus op'>-</span><span class='repository identifier id'>repository</span><span class='dot token'>.</span><span class='git identifier id'>git</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='rails identifier id'>rails</span> <span class='regexp val'>/rails/</span><span class='root identifier id'>root</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='rails identifier id'>rails</span><span class='minus op'>-</span><span class='env identifier id'>env</span> <span class='production identifier id'>production</span><span class='lt op'>&lt;</span><span class='regexp val'>/code&gt;
+</span></pre>
 <p>
 This does the same as above, but additionally dumps your production
 database and adds the fresh dump to your repository.
@@ -99,28 +90,24 @@ database and adds the fresh dump to your repository.
 You too, aren&#8217;t you? So Reflection allows you to store all command
 line options in a config file.
 </p>
-<p>
-<tt> $ reflection --stash --directory /path/to/your/assets --repository
-git@your-shared-repository.git --rails /rails/root --rails-env production
---write /path/to/your/config </tt>
-</p>
+<pre class="code">
+  $ <span class='reflection identifier id'>reflection</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='stash identifier id'>stash</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='directory identifier id'>directory</span> <span class='regexp val'>/path/</span><span class='to identifier id'>to</span><span class='div op'>/</span><span class='your identifier id'>your</span><span class='div op'>/</span><span class='assets identifier id'>assets</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='repository identifier id'>repository</span> <span class='git identifier id'>git</span><span class='@your ivar id'>@your</span><span class='minus op'>-</span><span class='shared identifier id'>shared</span><span class='minus op'>-</span><span class='repository identifier id'>repository</span><span class='dot token'>.</span><span class='git identifier id'>git</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='rails identifier id'>rails</span> <span class='regexp val'>/rails/</span><span class='root identifier id'>root</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='rails identifier id'>rails</span><span class='minus op'>-</span><span class='env identifier id'>env</span> <span class='production identifier id'>production</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='write identifier id'>write</span> <span class='regexp val'>/path/</span><span class='to identifier id'>to</span><span class='div op'>/</span><span class='your identifier id'>your</span><span class='div op'>/</span><span class='config identifier id'>config</span>
+</pre>
 <p>
 The next time you want to run the same command as above (useful for cron),
 you could simply call Reflection with:
 </p>
-<p>
-<tt>$ reflection /path/to/your/config</tt>
-</p>
+<pre class="code">
+  $ <span class='reflection identifier id'>reflection</span> <span class='div op'>/</span><span class='path identifier id'>path</span><span class='div op'>/</span><span class='to identifier id'>to</span><span class='div op'>/</span><span class='your identifier id'>your</span><span class='div op'>/</span><span class='config identifier id'>config</span>
+</pre>
 <h2>Getting the production stuff on your local development machine</h2>
 <p>
 This works exactly the same as describe above, but you would use
 --apply instead of --stash:
 </p>
-<p>
-<tt>$ reflection --apply --directory /path/to/your/assets --repository
-git@your-shared-repository.git --rails /rails/root --rails-env
-development</tt>
-</p>
+<pre class="code">
+  $ <span class='reflection identifier id'>reflection</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='apply identifier id'>apply</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='directory identifier id'>directory</span> <span class='regexp val'>/path/</span><span class='to identifier id'>to</span><span class='div op'>/</span><span class='your identifier id'>your</span><span class='div op'>/</span><span class='assets identifier id'>assets</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='repository identifier id'>repository</span> <span class='git identifier id'>git</span><span class='@your ivar id'>@your</span><span class='minus op'>-</span><span class='shared identifier id'>shared</span><span class='minus op'>-</span><span class='repository identifier id'>repository</span><span class='dot token'>.</span><span class='git identifier id'>git</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='rails identifier id'>rails</span> <span class='regexp val'>/rails/</span><span class='root identifier id'>root</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='rails identifier id'>rails</span><span class='minus op'>-</span><span class='env identifier id'>env</span> <span class='development identifier id'>development</span>
+</pre>
 <p>
 This clones or pulls <tt>git@your-shared-repository.git</tt> (again,
 Reflection keeps a version of your Repository in HOME/.reflection/apply),
@@ -136,9 +123,9 @@ If you have a <tt>reflection.yml</tt> config file in your current
 application-development-directory, syncing your server-production
 environment is as easy as running:
 </p>
-<p>
-<tt>$ reflection</tt>
-</p>
+<pre class="code">
+  $ <span class='reflection identifier id'>reflection</span>
+</pre>
 <h2>Note on Patches/Pull Requests</h2>
 <ul>
 <li>Fork the project.
@@ -167,7 +154,7 @@ Copyright &#169; 2009 Andreas Wolff. See LICENSE for details.
 </div></div>
     
     <div id="footer">
-  Generated on Wed Nov 18 17:52:39 2009 by 
+  Generated on Wed Nov 18 17:57:56 2009 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
   0.4.0 (ruby-1.8.7).
 </div>
