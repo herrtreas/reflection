@@ -5,9 +5,9 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "reflection"
-    gem.summary = %Q{Helps you keeping your development machine in sync with production.}
+    gem.summary = %Q{Keep your development machine in sync with production.}
     gem.description = %Q{
-      Reflection is designed to keep your production assets (database comming soon) in sync with your development system.
+      Reflection is designed to keep your development system in sync with your production system's files and database (by dumping).
       It uses a shared git repository to store these files, which allows you to mirror your production environment without the need of 
       direct access to your production servers.
     }
