@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=UTF-8" />
+<title>Documentation by YARD 0.4.0</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a title="Index" href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><div id='filecontents'><h1>Reflection</h1>
+<p>
+Reflection is designed to keep your development system in sync with your
+production system&#8217;s files and database (by dumping). It uses a shared
+git repository to store these files, which allows you to mirror your
+production environment without the need of direct access to your production
+servers.
+</p>
+<p>
+It provides two main command modes:
+</p>
+<ul>
+<li>Stash: Indented to be run on the server side, adds a specified directory
+and, optionally, a database dump to a shared Git repository
+
+</li>
+<li>Apply: To be used on a local development machine, gets content from the
+repository, copies it to a specified directory and optionally loads the
+database dump into your local database
+
+</li>
+</ul>
+<h2>Get it</h2>
+<p>
+Reflection is a gem, hosted on Gemcutter:
+</p>
+<p>
+<code>
+</p>
+<pre class="code">
+  <span class='gem identifier id'>gem</span> <span class='install identifier id'>install</span> <span class='gemcutter identifier id'>gemcutter</span>
+  <span class='gem identifier id'>gem</span> <span class='tumble identifier id'>tumble</span>
+  <span class='gem identifier id'>gem</span> <span class='install identifier id'>install</span> <span class='reflection identifier id'>reflection</span>
+</pre>
+<p>
+</code>
+</p>
+<h2>Stashing your production data</h2>
+<h4>The simplest form:</h4>
+<p>
+<tt>$ reflection --stash --directory /path/to/your/assets --repository
+git@your-shared-repository.git</tt>
+</p>
+<p>
+This will clone <tt>git@your-shared-repository.git</tt> and add the
+directory <tt>/path/to/your/assets</tt> to the repository. Reflection keeps
+a local version of your repository in HOME/.reflection/stash. So the next
+time you run the command, there is no need of cloning it again.
+</p>
+<h4>Now, lets include a database dump</h4>
+<p>
+<tt>$ reflection --stash --directory /path/to/your/assets --repository
+git@your-shared-repository.git --rails /rails/root --rails-env
+production</tt>
+</p>
+<p>
+This does the same as above, but additionally dumps your production
+database and adds the fresh dump to your repository.
+</p>
+<h4>I&#8217;m lazy..</h4>
+<p>
+You too, aren&#8217;t you? So Reflection allows you to store all command
+line options in a config file.
+</p>
+<p>
+<tt> $ reflection --stash --directory /path/to/your/assets --repository
+git@your-shared-repository.git --rails /rails/root --rails-env production
+--write /path/to/your/config </tt>
+</p>
+<p>
+The next time you want to run the same command as above (useful for cron),
+you could simply call Reflection with:
+</p>
+<p>
+<tt>$ reflection /path/to/your/config</tt>
+</p>
+<h2>Getting the production stuff on your local development machine</h2>
+<p>
+This works exactly the same as describe above, but you would use
+--apply instead of --stash:
+</p>
+<p>
+<tt>$ reflection --apply --directory /path/to/your/assets --repository
+git@your-shared-repository.git --rails /rails/root --rails-env
+development</tt>
+</p>
+<p>
+This clones or pulls <tt>git@your-shared-repository.git</tt> (again,
+Reflection keeps a version of your Repository in HOME/.reflection/apply),
+copies the content to the specified directory (e.g.
+rails/application/public/assets) and optionally loads the dump into your
+database. As you may have noticed, the Reflection command above got called
+with <tt>--rails-env development</tt>, which loads the dump in your
+development database (as defined by /rails/root/config/database.yml).
+</p>
+<h4>A little productivity hint</h4>
+<p>
+If you have a <tt>reflection.yml</tt> config file in your current
+application-development-directory, syncing your server-production
+environment is as easy as running:
+</p>
+<p>
+<tt>$ reflection</tt>
+</p>
+<h2>Note on Patches/Pull Requests</h2>
+<ul>
+<li>Fork the project.
+
+</li>
+<li>Make your feature addition or bug fix.
+
+</li>
+<li>Add specs for it. This is important so I don&#8217;t break it in a future
+version unintentionally.
+
+</li>
+<li>Commit, do not mess with rakefile, version, or history. (if you want to
+have your own version, that is fine but bump version in a commit by itself
+I can ignore when I pull)
+
+</li>
+<li>Send me a pull request. Bonus points for topic branches.
+
+</li>
+</ul>
+<h2>Copyright</h2>
+<p>
+Copyright &#169; 2009 Andreas Wolff. See LICENSE for details.
+</p>
+</div></div>
+    
+    <div id="footer">
+  Generated on Wed Nov 18 17:52:39 2009 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
+  0.4.0 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

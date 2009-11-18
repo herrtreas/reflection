@@ -1,0 +1,342 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=UTF-8" />
+<title>Class: Reflection::Command::Stash</title>
+<link rel="stylesheet" href="../../css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="../../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '../..';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../_index.html">Index (S)</a> &raquo; 
+    <a title="Reflection" href="../../Reflection.html">Reflection</a> &raquo; <a title="Command" href="../Command.html">Command</a>
+     &raquo; 
+    <span class="title">Stash</span>
+  
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: Reflection::Command::Stash 
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><a title="Reflection::Command::Base" href="Base.html">Reflection::Command::Base</a></span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next"><a title="Reflection::Command::Base" href="Base.html">Reflection::Command::Base</a></li>
+          
+            <li class="next">Reflection::Command::Stash</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/reflection/command/stash.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+
+  
+  
+  
+  
+
+  <h2>Method Summary</h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#prepare_stash_repository (instance method)" href="#prepare_stash_repository-instance_method">- (Object) <strong>prepare_stash_repository</strong>(stash_directory) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#run! (instance method)" href="#run%21-instance_method">- (Object) <strong>run!</strong> </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#stash_directory_into_repository (instance method)" href="#stash_directory_into_repository-instance_method">- (Object) <strong>stash_directory_into_repository</strong>(stash_directory, target_directory) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#validate! (instance method)" href="#validate%21-instance_method">- (Object) <strong>validate!</strong> </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+  </ul>
+
+
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <a title="Reflection::Command::Base" href="Base.html">Reflection::Command::Base</a></h3>
+  <p class="inherited"><a title="#initialize" href="Base.html#initialize-instance_method">#initialize</a>, <a title="run!" href="Base.html#run%21-class_method">run!</a>, <a title="#validate" href="Base.html#validate-instance_method">#validate</a>, <a title="#verify_that_target_is_not_a_repository" href="Base.html#verify_that_target_is_not_a_repository-instance_method">#verify_that_target_is_not_a_repository</a></p>
+<div id="constructor_details">
+  <h2>Constructor Details</h2>
+  
+    <p class="notice">This class inherits a constructor from <a title="Reflection::Command::Base" href="Base.html#initialize-instance_method">Reflection::Command::Base</a></p>
+  
+</div>
+
+
+  <div id="method_details">
+    <h2>Method Details</h2>
+    
+      <div class="method_details first">
+  <p class="signature first" id="prepare_stash_repository-instance_method">
+  
+    - (<tt>Object</tt>) <strong>prepare_stash_repository</strong>(stash_directory) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+29
+30
+31
+32
+33
+34
+35
+36
+37</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/reflection/command/stash.rb', line 29</span>
+
+<span class='def def kw'>def</span> <span class='prepare_stash_repository identifier id'>prepare_stash_repository</span><span class='lparen token'>(</span><span class='stash_directory identifier id'>stash_directory</span><span class='rparen token'>)</span>
+  <span class='Reflection constant id'>Reflection</span><span class='dot token'>.</span><span class='log identifier id'>log</span><span class='dot token'>.</span><span class='debug identifier id'>debug</span> <span class='string val'>&quot;Preparing stash repository..&quot;</span>
+
+  <span class='if if kw'>if</span> <span class='stash_directory identifier id'>stash_directory</span><span class='dot token'>.</span><span class='exists? fid id'>exists?</span>
+    <span class='stash_directory identifier id'>stash_directory</span><span class='dot token'>.</span><span class='validate_repository identifier id'>validate_repository</span>
+  <span class='else else kw'>else</span>
+    <span class='stash_directory identifier id'>stash_directory</span><span class='dot token'>.</span><span class='clone_repository identifier id'>clone_repository</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="run!-instance_method">
+  
+    - (<tt>Object</tt>) <strong>run!</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/reflection/command/stash.rb', line 15</span>
+
+<span class='def def kw'>def</span> <span class='run! fid id'>run!</span>
+  <span class='Reflection constant id'>Reflection</span><span class='dot token'>.</span><span class='log identifier id'>log</span><span class='dot token'>.</span><span class='info identifier id'>info</span> <span class='dstring node'>&quot;Stashing '#{config.directory}'..&quot;</span>
+
+  <span class='stash_directory identifier id'>stash_directory</span> <span class='assign token'>=</span> <span class='Directory constant id'>Directory</span><span class='colon2 op'>::</span><span class='Stash constant id'>Stash</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='Reflection constant id'>Reflection</span><span class='colon2 op'>::</span><span class='Repository constant id'>Repository</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='config identifier id'>config</span><span class='dot token'>.</span><span class='repository identifier id'>repository</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='string val'>'stash'</span><span class='rparen token'>)</span>
+  <span class='target_directory identifier id'>target_directory</span> <span class='assign token'>=</span> <span class='Directory constant id'>Directory</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='config identifier id'>config</span><span class='dot token'>.</span><span class='directory identifier id'>directory</span><span class='rparen token'>)</span>
+
+  <span class='verify_that_target_is_not_a_repository identifier id'>verify_that_target_is_not_a_repository</span><span class='lparen token'>(</span><span class='target_directory identifier id'>target_directory</span><span class='rparen token'>)</span>
+  
+  <span class='prepare_stash_repository identifier id'>prepare_stash_repository</span><span class='lparen token'>(</span><span class='stash_directory identifier id'>stash_directory</span><span class='rparen token'>)</span>
+  <span class='stash_directory_into_repository identifier id'>stash_directory_into_repository</span><span class='lparen token'>(</span><span class='stash_directory identifier id'>stash_directory</span><span class='comma token'>,</span> <span class='target_directory identifier id'>target_directory</span><span class='rparen token'>)</span>
+
+  <span class='Reflection constant id'>Reflection</span><span class='dot token'>.</span><span class='log identifier id'>log</span><span class='dot token'>.</span><span class='info identifier id'>info</span> <span class='string val'>&quot;Stash Command done.&quot;</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="stash_directory_into_repository-instance_method">
+  
+    - (<tt>Object</tt>) <strong>stash_directory_into_repository</strong>(stash_directory, target_directory) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+39
+40
+41
+42
+43
+44
+45</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/reflection/command/stash.rb', line 39</span>
+
+<span class='def def kw'>def</span> <span class='stash_directory_into_repository identifier id'>stash_directory_into_repository</span><span class='lparen token'>(</span><span class='stash_directory identifier id'>stash_directory</span><span class='comma token'>,</span> <span class='target_directory identifier id'>target_directory</span><span class='rparen token'>)</span>
+  <span class='copy_stash_repository_git_index_to_target identifier id'>copy_stash_repository_git_index_to_target</span><span class='lparen token'>(</span><span class='stash_directory identifier id'>stash_directory</span><span class='dot token'>.</span><span class='git_index identifier id'>git_index</span><span class='comma token'>,</span> <span class='target_directory identifier id'>target_directory</span><span class='dot token'>.</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>
+  <span class='Reflection constant id'>Reflection</span><span class='colon2 op'>::</span><span class='Rails constant id'>Rails</span><span class='dot token'>.</span><span class='stash identifier id'>stash</span><span class='lparen token'>(</span><span class='config identifier id'>config</span><span class='comma token'>,</span> <span class='target_directory identifier id'>target_directory</span><span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='config identifier id'>config</span><span class='dot token'>.</span><span class='rails_root identifier id'>rails_root</span>
+  <span class='commit_and_push_files identifier id'>commit_and_push_files</span><span class='lparen token'>(</span><span class='target_directory identifier id'>target_directory</span><span class='dot token'>.</span><span class='path identifier id'>path</span><span class='comma token'>,</span> <span class='target_directory identifier id'>target_directory</span><span class='dot token'>.</span><span class='name identifier id'>name</span><span class='rparen token'>)</span>
+  <span class='move_stash_repository_git_index_back identifier id'>move_stash_repository_git_index_back</span><span class='lparen token'>(</span><span class='target_directory identifier id'>target_directory</span><span class='dot token'>.</span><span class='git_index identifier id'>git_index</span><span class='comma token'>,</span> <span class='stash_directory identifier id'>stash_directory</span><span class='dot token'>.</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>
+  <span class='Reflection constant id'>Reflection</span><span class='colon2 op'>::</span><span class='Rails constant id'>Rails</span><span class='dot token'>.</span><span class='clean_target identifier id'>clean_target</span><span class='lparen token'>(</span><span class='target_directory identifier id'>target_directory</span><span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='config identifier id'>config</span><span class='dot token'>.</span><span class='rails_root identifier id'>rails_root</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="validate!-instance_method">
+  
+    - (<tt>Object</tt>) <strong>validate!</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+7
+8
+9
+10
+11
+12
+13</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/reflection/command/stash.rb', line 7</span>
+
+<span class='def def kw'>def</span> <span class='validate! fid id'>validate!</span>
+  <span class='validate identifier id'>validate</span><span class='dot token'>.</span><span class='existence_of identifier id'>existence_of</span> <span class='config identifier id'>config</span><span class='dot token'>.</span><span class='directory identifier id'>directory</span>
+  <span class='if if kw'>if</span> <span class='config identifier id'>config</span><span class='dot token'>.</span><span class='rails_root identifier id'>rails_root</span>
+    <span class='validate identifier id'>validate</span><span class='dot token'>.</span><span class='existence_of identifier id'>existence_of</span> <span class='config identifier id'>config</span><span class='dot token'>.</span><span class='rails_root identifier id'>rails_root</span>
+    <span class='Reflection constant id'>Reflection</span><span class='colon2 op'>::</span><span class='Rails constant id'>Rails</span><span class='dot token'>.</span><span class='validate_environment identifier id'>validate_environment</span><span class='lparen token'>(</span><span class='config identifier id'>config</span><span class='rparen token'>)</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Wed Nov 18 17:52:39 2009 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
+  0.4.0 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

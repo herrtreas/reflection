@@ -1,0 +1,409 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=UTF-8" />
+<title>Module: Reflection::Rails</title>
+<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '..';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (R)</a> &raquo; 
+    <a title="Reflection" href="../Reflection.html">Reflection</a>
+     &raquo; 
+    <span class="title">Rails</span>
+  
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Module: Reflection::Rails 
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/reflection/rails.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+
+
+  <h2>Method Summary</h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="apply (class method)" href="#apply-class_method">+ (Object) <strong>apply</strong>(config, target_directory) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="clean_target (class method)" href="#clean_target-class_method">+ (Object) <strong>clean_target</strong>(target_directory) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="database_command_line_options (class method)" href="#database_command_line_options-class_method">+ (Object) <strong>database_command_line_options</strong>(database_config) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="read_database_configuration (class method)" href="#read_database_configuration-class_method">+ (Object) <strong>read_database_configuration</strong>(config) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="stash (class method)" href="#stash-class_method">+ (Object) <strong>stash</strong>(config, target_directory) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="validate_environment (class method)" href="#validate_environment-class_method">+ (Object) <strong>validate_environment</strong>(config) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+  <div id="method_details">
+    <h2>Method Details</h2>
+    
+      <div class="method_details first">
+  <p class="signature first" id="apply-class_method">
+  
+    + (<tt>Object</tt>) <strong>apply</strong>(config, target_directory) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+51
+52
+53
+54
+55
+56
+57
+58</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/reflection/rails.rb', line 51</span>
+
+<span class='def def kw'>def</span> <span class='apply identifier id'>apply</span><span class='lparen token'>(</span><span class='config identifier id'>config</span><span class='comma token'>,</span> <span class='target_directory identifier id'>target_directory</span><span class='rparen token'>)</span>
+  <span class='Reflection constant id'>Reflection</span><span class='dot token'>.</span><span class='log identifier id'>log</span><span class='dot token'>.</span><span class='debug identifier id'>debug</span> <span class='string val'>&quot;Applying database dump..&quot;</span>        
+  <span class='return return kw'>return</span> <span class='unless unless_mod kw'>unless</span> <span class='database_config identifier id'>database_config</span> <span class='assign token'>=</span> <span class='read_database_configuration identifier id'>read_database_configuration</span><span class='lparen token'>(</span><span class='config identifier id'>config</span><span class='rparen token'>)</span>
+  <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='database_command_line_options identifier id'>database_command_line_options</span><span class='lparen token'>(</span><span class='database_config identifier id'>database_config</span><span class='rparen token'>)</span>
+  <span class='target_file_path identifier id'>target_file_path</span> <span class='assign token'>=</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='join identifier id'>join</span><span class='lparen token'>(</span><span class='target_directory identifier id'>target_directory</span><span class='dot token'>.</span><span class='path identifier id'>path</span><span class='comma token'>,</span> <span class='string val'>'_rails_database_dump.sql'</span><span class='rparen token'>)</span>
+  <span class='dxstring node'>%x(mysql #{options} &lt; #{target_file_path})</span>
+  <span class='clean_target identifier id'>clean_target</span><span class='lparen token'>(</span><span class='target_directory identifier id'>target_directory</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="clean_target-class_method">
+  
+    + (<tt>Object</tt>) <strong>clean_target</strong>(target_directory) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+12
+13
+14
+15
+16
+17</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/reflection/rails.rb', line 12</span>
+
+<span class='def def kw'>def</span> <span class='clean_target identifier id'>clean_target</span><span class='lparen token'>(</span><span class='target_directory identifier id'>target_directory</span><span class='rparen token'>)</span>
+  <span class='target_file_path identifier id'>target_file_path</span> <span class='assign token'>=</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='join identifier id'>join</span><span class='lparen token'>(</span><span class='target_directory identifier id'>target_directory</span><span class='dot token'>.</span><span class='path identifier id'>path</span><span class='comma token'>,</span> <span class='string val'>'_rails_database_dump.sql'</span><span class='rparen token'>)</span>
+  <span class='if if kw'>if</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='exist? fid id'>exist?</span><span class='lparen token'>(</span><span class='target_file_path identifier id'>target_file_path</span><span class='rparen token'>)</span>
+    <span class='dxstring node'>%x(rm #{target_file_path})</span>          
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="database_command_line_options-class_method">
+  
+    + (<tt>Object</tt>) <strong>database_command_line_options</strong>(database_config) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+19
+20
+21
+22
+23
+24
+25
+26</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/reflection/rails.rb', line 19</span>
+
+<span class='def def kw'>def</span> <span class='database_command_line_options identifier id'>database_command_line_options</span><span class='lparen token'>(</span><span class='database_config identifier id'>database_config</span><span class='rparen token'>)</span>
+  <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span>
+  <span class='options identifier id'>options</span> <span class='lshft op'>&lt;&lt;</span>  <span class='dstring node'>&quot;-h #{database_config['host']}&quot;</span>
+  <span class='options identifier id'>options</span> <span class='lshft op'>&lt;&lt;</span>  <span class='dstring node'>&quot;-u #{database_config['username']}&quot;</span>
+  <span class='options identifier id'>options</span> <span class='lshft op'>&lt;&lt;</span>  <span class='dstring node'>&quot;-p #{database_config['password']}&quot;</span> <span class='if if_mod kw'>if</span> <span class='database_config identifier id'>database_config</span><span class='lbrack token'>[</span><span class='string val'>'password'</span><span class='rbrack token'>]</span> <span class='andop op'>&amp;&amp;</span> <span class='notop op'>!</span><span class='database_config identifier id'>database_config</span><span class='lbrack token'>[</span><span class='string val'>'password'</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='empty? fid id'>empty?</span>
+  <span class='options identifier id'>options</span> <span class='lshft op'>&lt;&lt;</span>  <span class='dstring node'>&quot;#{database_config['database']}&quot;</span>
+  <span class='options identifier id'>options</span><span class='dot token'>.</span><span class='join identifier id'>join</span><span class='lparen token'>(</span><span class='string val'>' '</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="read_database_configuration-class_method">
+  
+    + (<tt>Object</tt>) <strong>read_database_configuration</strong>(config) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/reflection/rails.rb', line 28</span>
+
+<span class='def def kw'>def</span> <span class='read_database_configuration identifier id'>read_database_configuration</span><span class='lparen token'>(</span><span class='config identifier id'>config</span><span class='rparen token'>)</span>
+  <span class='begin begin kw'>begin</span>
+    <span class='database_path identifier id'>database_path</span> <span class='assign token'>=</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='join identifier id'>join</span><span class='lparen token'>(</span><span class='config identifier id'>config</span><span class='dot token'>.</span><span class='rails_root identifier id'>rails_root</span><span class='comma token'>,</span> <span class='string val'>&quot;config/database.yml&quot;</span><span class='rparen token'>)</span>
+    <span class='if if kw'>if</span> <span class='db_config identifier id'>db_config</span> <span class='assign token'>=</span> <span class='YAML constant id'>YAML</span><span class='dot token'>.</span><span class='load_file identifier id'>load_file</span><span class='lparen token'>(</span><span class='database_path identifier id'>database_path</span><span class='rparen token'>)</span><span class='lbrack token'>[</span><span class='config identifier id'>config</span><span class='dot token'>.</span><span class='rails_environment identifier id'>rails_environment</span><span class='rbrack token'>]</span>
+      <span class='return return kw'>return</span> <span class='db_config identifier id'>db_config</span>
+    <span class='else else kw'>else</span>
+      <span class='Reflection constant id'>Reflection</span><span class='dot token'>.</span><span class='log identifier id'>log</span><span class='dot token'>.</span><span class='error identifier id'>error</span><span class='lparen token'>(</span><span class='dstring node'>&quot;Rails database configuration for '#{config.rails_environment}' isn't available in #{database_path}&quot;</span><span class='rparen token'>)</span>
+      <span class='return return kw'>return</span> <span class='false false kw'>false</span>
+    <span class='end end kw'>end</span>
+  <span class='rescue rescue kw'>rescue</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='e identifier id'>e</span>
+    <span class='Reflection constant id'>Reflection</span><span class='dot token'>.</span><span class='log identifier id'>log</span><span class='dot token'>.</span><span class='error identifier id'>error</span><span class='lparen token'>(</span><span class='dstring node'>&quot;Error while parsing Rails database configuration: #{e}&quot;</span><span class='rparen token'>)</span>
+    <span class='return return kw'>return</span> <span class='false false kw'>false</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="stash-class_method">
+  
+    + (<tt>Object</tt>) <strong>stash</strong>(config, target_directory) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+43
+44
+45
+46
+47
+48
+49</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/reflection/rails.rb', line 43</span>
+
+<span class='def def kw'>def</span> <span class='stash identifier id'>stash</span><span class='lparen token'>(</span><span class='config identifier id'>config</span><span class='comma token'>,</span> <span class='target_directory identifier id'>target_directory</span><span class='rparen token'>)</span>
+  <span class='Reflection constant id'>Reflection</span><span class='dot token'>.</span><span class='log identifier id'>log</span><span class='dot token'>.</span><span class='debug identifier id'>debug</span> <span class='string val'>&quot;Stashing database dump..&quot;</span>
+  <span class='return return kw'>return</span> <span class='unless unless_mod kw'>unless</span> <span class='database_config identifier id'>database_config</span> <span class='assign token'>=</span> <span class='read_database_configuration identifier id'>read_database_configuration</span><span class='lparen token'>(</span><span class='config identifier id'>config</span><span class='rparen token'>)</span>
+  <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='database_command_line_options identifier id'>database_command_line_options</span><span class='lparen token'>(</span><span class='database_config identifier id'>database_config</span><span class='rparen token'>)</span>
+  <span class='target_file_path identifier id'>target_file_path</span> <span class='assign token'>=</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='join identifier id'>join</span><span class='lparen token'>(</span><span class='target_directory identifier id'>target_directory</span><span class='dot token'>.</span><span class='path identifier id'>path</span><span class='comma token'>,</span> <span class='string val'>'_rails_database_dump.sql'</span><span class='rparen token'>)</span>
+  <span class='dxstring node'>%x(mysqldump #{options} --add-drop-table &gt; #{target_file_path})</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="validate_environment-class_method">
+  
+    + (<tt>Object</tt>) <strong>validate_environment</strong>(config) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+5
+6
+7
+8
+9
+10</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/reflection/rails.rb', line 5</span>
+
+<span class='def def kw'>def</span> <span class='validate_environment identifier id'>validate_environment</span><span class='lparen token'>(</span><span class='config identifier id'>config</span><span class='rparen token'>)</span>
+  <span class='env_file_path identifier id'>env_file_path</span> <span class='assign token'>=</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='join identifier id'>join</span><span class='lparen token'>(</span><span class='config identifier id'>config</span><span class='dot token'>.</span><span class='rails_root identifier id'>rails_root</span><span class='comma token'>,</span> <span class='string val'>'config/environments'</span><span class='comma token'>,</span> <span class='dstring node'>&quot;#{config.rails_environment}.rb&quot;</span><span class='rparen token'>)</span>
+  <span class='unless unless kw'>unless</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='exist? fid id'>exist?</span><span class='lparen token'>(</span><span class='env_file_path identifier id'>env_file_path</span><span class='rparen token'>)</span>
+    <span class='Reflection constant id'>Reflection</span><span class='colon2 op'>::</span><span class='Support constant id'>Support</span><span class='dot token'>.</span><span class='exit_with_error identifier id'>exit_with_error</span><span class='lparen token'>(</span><span class='dstring node'>&quot;Rails environment '#{config.rails_environment}' doesn't exist in #{env_file_path}.&quot;</span><span class='rparen token'>)</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Wed Nov 18 17:52:40 2009 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
+  0.4.0 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

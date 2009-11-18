@@ -1,18 +1,80 @@
-= reflection
+= Reflection
 
-Helps you keeping your development machine in sync with production.
-Currently just a snapshot, so don't use it for any important stuff (you could loose important data).
+Reflection is designed to keep your development system in sync with your production system's files and database (by dumping).
+It uses a shared git repository to store these files, which allows you to mirror your production environment without the need of 
+direct access to your production servers.
+
+It provides two main command modes:
+
+* Stash: Indented to be run on the server side, adds a specified directory and, optionally, a database dump to a shared Git repository
+* Apply: To be used on a local development machine, gets content from the repository, copies it to a specified directory and optionally loads the database dump into your local database
+
+
+== Get it
+
+Reflection is a gem, hosted on Gemcutter:
+
+<code>
+  gem install gemcutter
+  gem tumble
+  gem install reflection
+</code>
+
+
+== Stashing your production data 
+
+==== The simplest form:
+
+<code>$ reflection --stash --directory /path/to/your/assets --repository git@your-shared-repository.git</code>
+
+This will clone +git@your-shared-repository.git+ and add the directory +/path/to/your/assets+ to the repository. 
+Reflection keeps a local version of your repository in HOME/.reflection/stash. So the next time you run the command, there is no need of cloning it again.
+
+
+==== Now, lets include a database dump
+
+<code>$ reflection --stash --directory /path/to/your/assets --repository git@your-shared-repository.git --rails /rails/root --rails-env production</code>
+
+This does the same as above, but additionally dumps your production database and adds the fresh dump to your repository.
+
+
+==== I'm lazy..
+
+You too, aren't you? So Reflection allows you to store all command line options in a config file.
+
+<code>
+$ reflection --stash --directory /path/to/your/assets --repository git@your-shared-repository.git --rails /rails/root --rails-env production --write /path/to/your/config
+</code>
+
+The next time you want to run the same command as above (useful for cron), you could simply call Reflection with:
+
+<code>$ reflection /path/to/your/config</code>
+
+
+== Getting the production stuff on your local development machine
+
+This works exactly the same as describe above, but you would use --apply instead of --stash:
+
+<code>$ reflection --apply --directory /path/to/your/assets --repository git@your-shared-repository.git --rails /rails/root --rails-env development</code>
+
+This clones or pulls +git@your-shared-repository.git+ (again, Reflection keeps a version of your Repository in HOME/.reflection/apply), copies the content to the specified directory (e.g. rails/application/public/assets) and optionally loads the dump into your database. As you may have noticed, the Reflection command above got called with +--rails-env development+, which loads the dump in your development database (as defined by /rails/root/config/database.yml).
+
+
+==== A little productivity hint
+
+If you have a +reflection.yml+ config file in your current application-development-directory, syncing your server-production environment is as easy as running:
+
+<code>$ reflection</code>
+
 
 
 == Note on Patches/Pull Requests
  
 * Fork the project.
 * Make your feature addition or bug fix.
-* Add tests for it. This is important so I don't break it in a
-  future version unintentionally.
+* Add specs for it. This is important so I don't break it in a future version unintentionally.
 * Commit, do not mess with rakefile, version, or history.
-  (if you want to have your own version, that is fine but
-   bump version in a commit by itself I can ignore when I pull)
+  (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
 * Send me a pull request. Bonus points for topic branches.
 
 == Copyright

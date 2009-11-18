@@ -5,14 +5,14 @@
 
 Gem::Specification.new do |s|
   s.name = %q{reflection}
-  s.version = "0.3.1"
+  s.version = "0.4.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Andreas Wolff"]
-  s.date = %q{2009-11-17}
+  s.date = %q{2009-11-18}
   s.default_executable = %q{reflection}
   s.description = %q{
-      Reflection is designed to keep your production assets (database comming soon) in sync with your development system.
+      Reflection is designed to keep your development system in sync with your production system's files and database (by dumping).
       It uses a shared git repository to store these files, which allows you to mirror your production environment without the need of 
       direct access to your production servers.
     }
@@ -42,6 +42,7 @@ Gem::Specification.new do |s|
      "lib/reflection/directory.rb",
      "lib/reflection/directory/base.rb",
      "lib/reflection/directory/stash.rb",
+     "lib/reflection/rails.rb",
      "lib/reflection/repository.rb",
      "lib/reflection/support.rb",
      "lib/reflection/support/home.rb",
@@ -52,6 +53,7 @@ Gem::Specification.new do |s|
      "spec/reflection/config_spec.rb",
      "spec/reflection/directory/base_spec.rb",
      "spec/reflection/directory/stash_spec.rb",
+     "spec/reflection/rails_spec.rb",
      "spec/reflection/repository_spec.rb",
      "spec/reflection/support/home_spec.rb",
      "spec/reflection/support_spec.rb",
@@ -63,13 +65,14 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.5}
-  s.summary = %q{Helps you keeping your development machine in sync with production.}
+  s.summary = %q{Keep your development machine in sync with production.}
   s.test_files = [
     "spec/reflection/cli_spec.rb",
      "spec/reflection/command/stash_spec.rb",
      "spec/reflection/config_spec.rb",
      "spec/reflection/directory/base_spec.rb",
      "spec/reflection/directory/stash_spec.rb",
+     "spec/reflection/rails_spec.rb",
      "spec/reflection/repository_spec.rb",
      "spec/reflection/support/home_spec.rb",
      "spec/reflection/support_spec.rb",
