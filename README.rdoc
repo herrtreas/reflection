@@ -27,7 +27,7 @@ Reflection is a gem, hosted on Gemcutter:
 
   $ reflection --stash --directory /path/to/your/assets --repository git@your-shared-repository.git
 
-This will clone +git@your-shared-repository.git+ and add the directory +/path/to/your/assets+ to the repository. 
+This will clone <tt>git@your-shared-repository.git</tt> and add the directory <tt>/path/to/your/assets</tt> to the repository. 
 Reflection keeps a local version of your repository in HOME/.reflection/stash. So the next time you run the command, there is no need of cloning it again.
 
 
@@ -57,12 +57,12 @@ This works exactly the same as describe above, but you would use --apply instead
 
   $ reflection --apply --directory /path/to/your/assets --repository git@your-shared-repository.git --rails /rails/root --rails-env development
 
-This clones or pulls +git@your-shared-repository.git+ (again, Reflection keeps a version of your Repository in HOME/.reflection/apply), copies the content to the specified directory (e.g. rails/application/public/assets) and optionally loads the dump into your database. As you may have noticed, the Reflection command above got called with +--rails-env development+, which loads the dump in your development database (as defined by /rails/root/config/database.yml).
+This clones or pulls <tt>git@your-shared-repository.git</tt> (again, Reflection keeps a version of your Repository in HOME/.reflection/apply), copies the content to the specified directory (e.g. rails/application/public/assets) and optionally loads the dump into your database. As you may have noticed, the Reflection command above got called with <tt>--rails-env development</tt>, which loads the dump in your development database (as defined by /rails/root/config/database.yml).
 
 
 ==== A little productivity hint
 
-If you have a +reflection.yml+ config file in your current application-development-directory, syncing your server-production environment is as easy as running:
+If you have a <tt>reflection.yml</tt> config file in your current application-development-directory, syncing your server-production environment is as easy as running:
 
   $ reflection
 
