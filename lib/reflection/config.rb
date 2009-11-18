@@ -11,6 +11,8 @@ module Reflection
     attr_accessor :command
     attr_accessor :directory
     attr_accessor :repository
+    attr_accessor :rails_root
+    attr_accessor :rails_environment
     attr_accessor :store_configuration_path
     
     def self.parse(args = [])
@@ -28,13 +30,21 @@ module Reflection
     end
 
     def to_hash
-      { :command => self.command, :repository => self.repository, :directory => self.directory }
+      { 
+        :command => self.command, 
+        :repository => self.repository, 
+        :directory => self.directory,
+        :rails_root => self.rails_root,
+        :rails_environment => self.rails_environment
+      }
     end
     
     def from_hash(hash)
       self.command = hash[:command]
       self.directory = hash[:directory]
       self.repository = hash[:repository]
+      self.rails_root = hash[:rails_root]
+      self.rails_environment = hash[:rails_environment]
     end
 
     def write(path)
@@ -61,8 +71,10 @@ module Reflection
 
     def parse_command_line_options(args)
       opt_parser = OptionParser.new do |opts|
-        opts.banner = "Usage: reflection --COMMAND --repository=GIT_REPO --directory=PATH"
-
+        opts.banner =   "Usage: reflection --COMMAND --repository=GIT_REPO --directory=PATH\n"
+        opts.banner <<  " -or-\n"
+        opts.banner <<  "Usage: reflection /path/to/reflection-config-file.yml"
+        
         opts.separator " "
         opts.separator "On the server side:"
 
@@ -86,7 +98,16 @@ module Reflection
         end
 
         opts.separator " "
-        opts.separator "Additional options for both:"        
+        opts.separator "Additional options for both:"
+
+        opts.on("--rails [RAILS_ROOT]", "Enable dumping/applying of a Rails managed MySQL database") do |path|
+          self.rails_root = path || nil
+        end        
+
+        opts.on("--rails-env [ENV]", "Rails environment to instrument") do |environment|
+          self.rails_environment = environment || nil
+        end        
+        
         opts.on("--write [FILE]", "Create a configuration FILE from the current commandline options") do |config_file_path|
           self.store_configuration_path = config_file_path if config_file_path
         end

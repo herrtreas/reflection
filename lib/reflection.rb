@@ -5,6 +5,7 @@ module Reflection
   autoload :Config,           'reflection/config'
   autoload :Command,          'reflection/command'
   autoload :Directory,        'reflection/directory'
+  autoload :Rails,            'reflection/rails'
   autoload :Repository,       'reflection/repository'
   autoload :Support,          'reflection/support'
   autoload :Validations,      'reflection/validations'

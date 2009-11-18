@@ -2,7 +2,9 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Reflection::Config do
   before(:each) do
-    @valid_options = { :command => :stash, :repository => 'repo', :directory => 'dir' }
+    @valid_options = { 
+      :command => :stash, :repository => 'repo', :directory => 'dir', :rails_root => "rails_root", :rails_environment => 'development' 
+    }
   end
   
   describe 'parse' do
@@ -41,6 +43,8 @@ describe Reflection::Config do
       @config.command = :stash
       @config.repository = 'repo'
       @config.directory = 'dir'
+      @config.rails_root = 'rails_root'
+      @config.rails_environment = 'development'
       @config.to_hash.should == @valid_options
     end
   end
@@ -52,6 +56,8 @@ describe Reflection::Config do
       @config.command.should eql(:stash)
       @config.repository.should eql('repo')
       @config.directory.should eql('dir')
+      @config.rails_root.should eql('rails_root')
+      @config.rails_environment.should eql('development')
     end
   end
   

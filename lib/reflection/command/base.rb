@@ -1,16 +1,16 @@
 module Reflection
   module Command
     class Base
-      attr_accessor :options
+      attr_accessor :config
       
-      def self.run!(options)
-        command = self.new(options)
+      def self.run!(config)
+        command = self.new(config)
         command.validate! if command.respond_to?(:validate!)
         command.run!
       end
       
-      def initialize(new_options)
-        self.options = new_options
+      def initialize(new_config)
+        self.config = new_config
       end      
       
       def validate

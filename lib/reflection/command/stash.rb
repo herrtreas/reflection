@@ -5,14 +5,18 @@ module Reflection
     class Stash < Reflection::Command::Base
 
       def validate!
-        validate.existence_of options.directory
+        validate.existence_of config.directory
+        if config.rails_root
+          validate.existence_of config.rails_root
+          Reflection::Rails.validate_environment(config)
+        end
       end
 
       def run!
-        Reflection.log.info "Stashing '#{options.directory}'.."
+        Reflection.log.info "Stashing '#{config.directory}'.."
 
-        stash_directory = Directory::Stash.new(Reflection::Repository.new(options.repository), 'stash')
-        target_directory = Directory::Base.new(options.directory)
+        stash_directory = Directory::Stash.new(Reflection::Repository.new(config.repository), 'stash')
+        target_directory = Directory::Base.new(config.directory)
 
         verify_that_target_is_not_a_repository(target_directory)
         
@@ -34,8 +38,10 @@ module Reflection
 
       def stash_directory_into_repository(stash_directory, target_directory)
         copy_stash_repository_git_index_to_target(stash_directory.git_index, target_directory.path)
+        Reflection::Rails.stash(config, target_directory) if config.rails_root
         commit_and_push_files(target_directory.path, target_directory.name)
         move_stash_repository_git_index_back(target_directory.git_index, stash_directory.path)
+        Reflection::Rails.clean_target(target_directory) if config.rails_root
       end
 
 

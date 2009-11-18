@@ -1,7 +1,6 @@
-+ Add DB Dumper (include in cli-opt-parser)
 + Remove stash directory if its empty (on reinit)
 + Add Logger (Reflection::Support.log)
-+ After command callbacks: Twitter, Campfire on Serverside
++ After command callbacks: Apphunk
 + List existing reflections in client side
   + Allow to apply any (git) version, not just the latest
 + Add cli option use tmp-apply (removes ~/.reflection/apply-dir after command) 

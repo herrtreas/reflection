@@ -2,8 +2,8 @@ require File.dirname(__FILE__) + '/../../spec_helper'
 
 describe Reflection::Command::Stash do
   before(:each) do
-    @options = OpenStruct.new({ :directory => '/home/tmp/fu_asset_directory', :command => :stash })
-    @subject = Reflection::Command::Stash.new(@options)
+    @config = OpenStruct.new({ :directory => '/home/tmp/fu_asset_directory', :command => :stash })
+    @subject = Reflection::Command::Stash.new(@config)
   end
   
   describe 'validations' do
@@ -82,6 +82,13 @@ describe Reflection::Command::Stash do
       @subject.should_receive(:copy_stash_repository_git_index_to_target).with("/home/stash/path/.git", "/home/tmp/assets")
       @subject.stash_directory_into_repository(@mock_stash_directory, @mock_target_directory)
     end
+    
+    it 'should call the stash command on the database dumper if enabled' do
+      @config.rails_root = "/rails/root"
+      Reflection::Rails.should_receive(:stash).with(@config, @mock_target_directory)
+      @subject.stash_directory_into_repository(@mock_stash_directory, @mock_target_directory)
+    end
+    
     
     it "should add and push the contents of directory to the repository" do
       @subject.should_receive(:commit_and_push_files).with("/home/tmp/assets", "assets")
