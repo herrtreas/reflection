@@ -5,3 +5,4 @@
   + Allow to apply any (git) version, not just the latest
 + Add cli option use tmp-apply (removes ~/.reflection/apply-dir after command) 
 + Allow collection of assets from Akamai and/or CloudFront (hm.. does that make sense?)
++ Add option to output --version
