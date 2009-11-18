@@ -19,8 +19,8 @@ module Reflection
       def database_command_line_options(database_config)
         options = []
         options <<  "-h #{database_config['host']}"
-        options <<  "-u #{database_config['username']}"
-        options <<  "-p #{database_config['password']}" if database_config['password'] && !database_config['password'].empty?
+        options <<  "-u#{database_config['username']}"
+        options <<  "-p#{database_config['password']}" if database_config['password'] && !database_config['password'].empty?
         options <<  "#{database_config['database']}"
         options.join(' ')
       end
