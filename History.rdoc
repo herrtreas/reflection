@@ -1,4 +1,9 @@
 === current HEAD
+
+=== 0.4.6 / 2009-11-19
+
+* fixes
+  * Fixed a blocking command call
     
 === 0.4.5 / 2009-11-19
 
@@ -6,5 +11,5 @@
   * Added --force option to skip moments of user-interaction
   * Replaced FileUtils#methods with its native brothers to gain more speed (and to preserve your cpu)
   
-* fixed
+* fixes
   * Fixed no-working repository-pull
