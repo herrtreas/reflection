@@ -1,7 +1,0 @@
-=== current HEAD
-  * enhancements
-    * Added --force option to skip moments of user-interaction
-    * Replaced FileUtils#methods with its native brothers to gain more speed (and to preserve your cpu)
-    
-  * fixed
-    * Fixed no-working repository-pull

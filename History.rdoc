@@ -1,0 +1,10 @@
+=== current HEAD
+    
+=== 0.4.5 / 2009-11-19
+
+* enhancements
+  * Added --force option to skip moments of user-interaction
+  * Replaced FileUtils#methods with its native brothers to gain more speed (and to preserve your cpu)
+  
+* fixed
+  * Fixed no-working repository-pull
