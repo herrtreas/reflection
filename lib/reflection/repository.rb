@@ -62,9 +62,8 @@ module Reflection
     end
     
     def pull
-      repo = Git.open(self.path)
-      Reflection.log.debug "Pulling.."
-      Reflection.log.debug(repo.pull)
+      Reflection.log.debug "Pulling in #{self.path}.."
+      Reflection.log.debug(%x((cd #{self.path} && git pull --rebase)))
     end
     
   end
