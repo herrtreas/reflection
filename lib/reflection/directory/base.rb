@@ -1,5 +1,3 @@
-require 'fileutils'
-
 module Reflection
   module Directory
     class Base
@@ -37,7 +35,7 @@ module Reflection
       
       def copy_git_index_to(target_path)
         Reflection.log.debug "Copying git-index '#{self.git_index}' to #{target_path}"
-        FileUtils.cp_r(self.git_index, target_path)
+        %x(cp -R #{self.git_index} #{target_path})
       end
       
       def get_git_index_from(target_path)
@@ -50,8 +48,8 @@ module Reflection
       
       def move_content_to(target_path)
         Reflection.log.debug "Moving content to '#{target_path}'.."
-        FileUtils.cp_r(File.join(self.path, '/.'), target_path)
-        FileUtils.rm_r(File.join(self.path, '/'))
+        %x(cp -R #{File.join(self.path, '/.')} #{target_path})
+        %x(rm -rf #{self.path})
       end
       
     end

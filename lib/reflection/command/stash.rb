@@ -1,5 +1,3 @@
-require 'fileutils'
-
 module Reflection
   module Command
     class Stash < Reflection::Command::Base
@@ -48,7 +46,7 @@ module Reflection
       private
 
         def copy_stash_repository_git_index_to_target(source, target)
-          FileUtils.cp_r(source, target)
+          %x(cp -R #{source} #{target})
         end
 
         def commit_and_push_files(repository_path, target)
@@ -58,8 +56,8 @@ module Reflection
         end
 
         def move_stash_repository_git_index_back(source, target)
-          FileUtils.rm_r(File.join(target, "/.git"))
-          FileUtils.mv(source, target)
+          %x(rm -r #{File.join(target, "/.git")})
+          %x(mv #{source} #{target})
         end
 
     end

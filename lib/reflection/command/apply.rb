@@ -1,5 +1,3 @@
-require 'fileutils'
-
 module Reflection
   module Command
     class Apply < Reflection::Command::Base
@@ -46,7 +44,8 @@ module Reflection
       private
 
         def get_user_approval_for_cleaning_target(target_directory)
-          puts "\nIn order to get a fresh copy of your files, Reflection will have to remove all files under '#{target_directory.path}'."
+          puts "\nIn order to get a fresh copy of your files, "
+          puts "Reflection will have to remove all files under '#{target_directory.path}'."
           puts "If you are sure, hit <enter> to proceed.."
           
           unless STDIN.getc == 10
