@@ -15,6 +15,7 @@ module Reflection
     attr_accessor :rails_environment
     attr_accessor :store_configuration_path
     attr_accessor :verbose
+    attr_accessor :force
     
     def self.parse(args = [])
       config = Config.new
@@ -33,11 +34,12 @@ module Reflection
     def to_hash
       { 
         :command => self.command, 
-        :repository => self.repository, 
         :directory => self.directory,
+        :repository => self.repository, 
         :rails_root => self.rails_root,
         :rails_environment => self.rails_environment,
-        :verbose => self.verbose
+        :verbose => self.verbose,
+        :force => self.force
       }
     end
     
@@ -48,6 +50,7 @@ module Reflection
       self.rails_root = hash[:rails_root]
       self.rails_environment = hash[:rails_environment]
       self.verbose = Reflection.verbose = hash[:verbose]
+      self.force = hash[:force]
     end
 
     def write(path)
@@ -118,6 +121,10 @@ module Reflection
         opts.on("-v", "--verbose", "Include debug information in output") do
           self.verbose = true
           Reflection.verbose = true
+        end
+
+        opts.on("--force", "Hide tedious warnings") do
+          self.force = true
         end
       end
 

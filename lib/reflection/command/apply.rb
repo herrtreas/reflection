@@ -14,8 +14,10 @@ module Reflection
         stash_directory = Directory::Stash.new(Reflection::Repository.new(config.repository), 'apply')
         target_directory = Directory::Base.new(config.directory)
 
-        get_user_approval_for_cleaning_target(target_directory)
-        get_user_approval_for_apply_database_dump if config.rails_root
+        unless config.force
+          get_user_approval_for_cleaning_target(target_directory)
+          get_user_approval_for_apply_database_dump if config.rails_root
+        end
         
         verify_that_target_is_not_a_repository(target_directory)
 
@@ -43,7 +45,7 @@ module Reflection
 
       private
 
-        def get_user_approval_for_cleaning_target(target_directory)
+        def get_user_approval_for_cleaning_target(target_directory)          
           puts "\nIn order to get a fresh copy of your files, "
           puts "Reflection will have to remove all files under '#{target_directory.path}'."
           puts "If you are sure, hit <enter> to proceed.."

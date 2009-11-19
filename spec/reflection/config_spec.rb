@@ -8,7 +8,8 @@ describe Reflection::Config do
       :directory => 'dir', 
       :rails_root => "rails_root", 
       :rails_environment => 'development',
-      :verbose => true
+      :verbose => true,
+      :force => false
     }
   end
   
@@ -51,6 +52,7 @@ describe Reflection::Config do
       @config.rails_root = 'rails_root'
       @config.rails_environment = 'development'
       @config.verbose = true
+      @config.force = false
       @config.to_hash.should == @valid_options
     end
   end
@@ -65,6 +67,7 @@ describe Reflection::Config do
       @config.rails_root.should eql('rails_root')
       @config.rails_environment.should eql('development')
       @config.verbose.should be_true
+      @config.force.should be_false
     end
   end
   
