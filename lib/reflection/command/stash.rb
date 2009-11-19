@@ -56,7 +56,7 @@ module Reflection
         end
 
         def move_stash_repository_git_index_back(source, target)
-          %x(rm -r #{File.join(target, "/.git")})
+          %x(rm -rf #{File.join(target, "/.git")})
           %x(mv #{source} #{target})
         end
 
