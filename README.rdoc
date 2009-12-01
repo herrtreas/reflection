@@ -102,9 +102,10 @@ If you have a <tt>reflection.yml</tt> config file in your current application-de
           --rails [RAILS_ROOT]         Enable dumping/applying of a Rails managed MySQL database
           --rails-env [ENV]            Rails environment to instrument
           --write [FILE]               Create a configuration FILE from the current commandline options
-      -v, --verbose                    Include debug information in output
           --force                      Hide tedious warnings
-      
+      -v, --verbose                    Include debug information in output
+          --version                    Show version
+
 
 == Note on Patches/Pull Requests
  
