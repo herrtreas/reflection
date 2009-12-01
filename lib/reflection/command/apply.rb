@@ -35,7 +35,7 @@ module Reflection
         else
           stash_directory.clone_repository
           stash_directory.move_content_to(target_directory.path)
-          stash_directory.get_git_index_from(target_directory.path)
+          # stash_directory.get_git_index_from(target_directory.path)
         end
 
         Reflection::Rails.apply(config, target_directory)

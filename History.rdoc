@@ -1,6 +1,7 @@
 === current HEAD
 
 * enhancements
+  * Move instead of copy to preserve even more cpu-io-wait
   * Show the current version (--version)
   * Rails: Recreate the database before applying a dump
   * Rails: Run pending migrations after applying a dump

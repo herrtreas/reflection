@@ -48,8 +48,9 @@ module Reflection
       
       def move_content_to(target_path)
         Reflection.log.debug "Moving content to '#{target_path}'.."
-        %x(cp -R #{File.join(self.path, '/.')} #{target_path})
-        %x(rm -rf #{self.path})
+        %x(mv #{File.join(self.path, '/*')} #{File.join(target_path, '/')})
+        # %x(cp -R #{File.join(self.path, '/.')} #{target_path})
+        # %x(rm -rf #{self.path})
       end
       
     end

@@ -73,13 +73,13 @@ describe Reflection::Command::Stash do
       @mock_stash_repository.stub!(:repository).and_return(@mock_stash_repository)
       @mock_target_directory = mock('Directory::Base', :name => 'assets', :path => '/home/tmp/assets', :git_index => '/home/tmp/assets/.git')
 
-      @subject.stub!(:copy_stash_repository_git_index_to_target)
+      @subject.stub!(:move_stash_repository_git_index_to_target)
       @subject.stub!(:commit_and_push_files)
       @subject.stub!(:move_stash_repository_git_index_back)
     end
     
     it "should move the stash-repository-directory (.git) one level above the asset directory path" do
-      @subject.should_receive(:copy_stash_repository_git_index_to_target).with("/home/stash/path/.git", "/home/tmp/assets")
+      @subject.should_receive(:move_stash_repository_git_index_to_target).with("/home/stash/path/.git", "/home/tmp/assets")
       @subject.stash_directory_into_repository(@mock_stash_directory, @mock_target_directory)
     end
     

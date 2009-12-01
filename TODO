@@ -1,12 +1,11 @@
-* Replace cp + rm with mv to gain more speed and preserve cpu-io-wait
 + Subdir savepoints so I can use one repository for any number of reflections
 + Allow for relative paths (enables one config for different machines)
 + Remove stash directory if its empty (on reinit)
 + Add Logger (Reflection::Support.log)
 + After command callbacks: Apphunk
++ Add cli option "use tmp-apply" --> (removes ~/.reflection/apply-dir after command) 
++ Allow collection of assets from Akamai and/or CloudFront (hm.. does that make sense?)
 + List existing reflections in client side
   + Allow to apply any (git) version, not just the latest
-+ Add cli option use tmp-apply (removes ~/.reflection/apply-dir after command) 
-+ Allow collection of assets from Akamai and/or CloudFront (hm.. does that make sense?)
-+ Add option to output --version
+
 - Remove ruby-git dependency

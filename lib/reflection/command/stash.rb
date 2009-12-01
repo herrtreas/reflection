@@ -35,7 +35,7 @@ module Reflection
       end
 
       def stash_directory_into_repository(stash_directory, target_directory)
-        copy_stash_repository_git_index_to_target(stash_directory.git_index, target_directory.path)
+        move_stash_repository_git_index_to_target(stash_directory.git_index, target_directory.path)
         Reflection::Rails.stash(config, target_directory) if config.rails_root
         commit_and_push_files(target_directory.path, target_directory.name)
         move_stash_repository_git_index_back(target_directory.git_index, stash_directory.path)
@@ -45,8 +45,8 @@ module Reflection
 
       private
 
-        def copy_stash_repository_git_index_to_target(source, target)
-          %x(cp -R #{source} #{target})
+        def move_stash_repository_git_index_to_target(source, target)
+          %x(mv #{source} #{target})
         end
 
         def commit_and_push_files(repository_path, target)
@@ -56,7 +56,6 @@ module Reflection
         end
 
         def move_stash_repository_git_index_back(source, target)
-          %x(rm -rf #{File.join(target, "/.git")})
           %x(mv #{source} #{target})
         end
 
