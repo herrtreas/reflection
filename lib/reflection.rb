@@ -23,5 +23,10 @@ module Reflection
       Reflection::CLI.run!(args)
     end
     
+    def version
+      File.open(File.expand_path(File.join(__FILE__, '../..', 'VERSION')), 'r') do |f|
+        f.readlines.first.to_s
+      end
+    end
   end
 end

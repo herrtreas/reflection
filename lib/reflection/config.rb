@@ -118,13 +118,17 @@ module Reflection
           self.store_configuration_path = config_file_path if config_file_path
         end
 
+        opts.on("--force", "Hide tedious warnings") do
+          self.force = true
+        end
+
         opts.on("-v", "--verbose", "Include debug information in output") do
           self.verbose = true
           Reflection.verbose = true
         end
 
-        opts.on("--force", "Hide tedious warnings") do
-          self.force = true
+        opts.on("--version", "Show version") do
+          self.command = :show_version
         end
       end
 

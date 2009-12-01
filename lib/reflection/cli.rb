@@ -4,9 +4,14 @@ module Reflection
 
       def run!(args = nil)
         config = Reflection::Config.parse(args)
-
+        
+        if config.command == :show_version
+          puts "Version: #{Reflection.version}"
+          exit
+        end
+        
         if verify_config(config) == false
-          Reflection::Support.exit_with_error("Ahh ja, missing arguments. Please read 'reflection --help' to get a feeling of how it works.")
+          Reflection::Support.exit_with_error("Missing arguments. Please read 'reflection --help' to get a feeling of how it works.")
         else
           case config.command
             when :apply
