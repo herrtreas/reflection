@@ -147,15 +147,15 @@ describe Reflection::Rails::Database do
     end
     
     it 'should create options for the mysql command' do
-      @database.command_line_options.should == "-A -h localhost -uroot -psecret test"
+      @database.command_line_options.should == "-h localhost -uroot -psecret test"
     end
     
     it 'should ignore the password option if its not available' do
       @database.configuration['password'] = ""
-      @database.command_line_options.should == "-A -h localhost -uroot test"
+      @database.command_line_options.should == "-h localhost -uroot test"
     
       @database.configuration['password'] = nil
-      @database.command_line_options.should == "-A -h localhost -uroot test"
+      @database.command_line_options.should == "-h localhost -uroot test"
     end
   end
 end
