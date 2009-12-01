@@ -1,4 +1,3 @@
-+ Subdir savepoints so I can use one repository for any number of reflections
 + Allow for relative paths (enables one config for different machines)
 + Remove stash directory if its empty (on reinit)
 + Add Logger (Reflection::Support.log)
