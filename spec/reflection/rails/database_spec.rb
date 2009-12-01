@@ -60,23 +60,23 @@ describe Reflection::Rails::Database do
     end
   end
   
-  describe '#migrate' do
+  describe '#migrate!' do
     before(:each) do
     end
     
     it 'should run the migrate command' do
       @database.should_receive(:run).with(/rake db:migrate/)
-      @database.migrate
+      @database.migrate!
     end
     
     it 'should temporarily cd into the rails root' do
       @database.should_receive(:run).with(/cd \/rails_root/)
-      @database.migrate
+      @database.migrate!
     end
     
     it 'should instrument the specified environment' do
       @database.should_receive(:run).with(/RAILS_ENV=development/)
-      @database.migrate
+      @database.migrate!
     end
   end
   

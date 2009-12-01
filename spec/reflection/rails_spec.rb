@@ -34,6 +34,7 @@ describe Reflection::Rails do
       @mock_database.stub!(:recreate!)
       @mock_database.stub!(:load_dump_from_file)
       @mock_database.stub!(:clean_dump_file)
+      @mock_database.stub!(:migrate!)
       Reflection::Rails::Database.stub!(:new).and_return(@mock_database)
     end
     
@@ -49,6 +50,11 @@ describe Reflection::Rails do
 
     it 'should should remove the dump file from target' do
       @mock_database.should_receive(:clean_dump_file).with('target')
+      @rails.apply(@config, @mock_target)
+    end
+
+    it 'should should migrate the database after applying a dump' do
+      @mock_database.should_receive(:migrate!)
       @rails.apply(@config, @mock_target)
     end
   end

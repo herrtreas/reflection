@@ -17,6 +17,7 @@ module Reflection
       end
 
       def load_dump_from_file(target_directory)
+        Reflection.log.debug "Loading dump.."
         run("mysql #{command_line_options(:no_rehash => true)} < #{dump_file_path(target_directory)}")
       end
 
@@ -41,7 +42,8 @@ module Reflection
         run("echo \"DROP DATABASE #{self.configuration['database']};\" | mysql #{command_line_options(:skip => :database)}")
       end
       
-      def migrate
+      def migrate!
+        Reflection.log.debug "Migrating database.."
         run("(cd #{self.rails_root} && RAILS_ENV=#{self.environment} rake db:migrate)")
       end
 

@@ -3,7 +3,6 @@
 + Allow for relative paths (enables one config for different machines)
 + Remove stash directory if its empty (on reinit)
 + Add Logger (Reflection::Support.log)
-+ Rails: Run migrations after apply
 + After command callbacks: Apphunk
 + List existing reflections in client side
   + Allow to apply any (git) version, not just the latest

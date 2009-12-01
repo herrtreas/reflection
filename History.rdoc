@@ -1,5 +1,9 @@
 === current HEAD
 
+* enhancements
+  * Rails: Recreate the database before applying a dump
+  * Rails: Run pending migrations after applying a dump
+
 === 0.4.6 / 2009-11-19
 
 * fixes
