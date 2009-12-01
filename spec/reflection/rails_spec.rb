@@ -14,42 +14,43 @@ describe Reflection::Rails do
     end
   end
   
-  describe 'read_database_configuration' do
-    it 'should read the configuration for the specified environment' do
-      db_config = { "host" => "localhost", "username" => "root" }
-      YAML.should_receive(:load_file).with('/rails_root/config/database.yml').and_return({ "production" => {}, "development" => db_config })
-      db_config = @rails.read_database_configuration(@config)
-      db_config.should == db_config
+  describe 'stash' do
+    before(:each) do
+      @mock_target = mock('Reflection::Directory', :path => 'target')
+      @mock_database = mock('Reflection::Rails::Database')
+      Reflection::Rails::Database.stub!(:new).and_return(@mock_database)
     end
     
-    it "should log an error and return false if the environment isn't configured" do
-      Reflection.log.should_receive(:error).with(/available/)
-      YAML.stub!(:load_file).and_return({ "production" => {} })
-      @rails.read_database_configuration(@config).should be_false
-    end
-    
-    it "should log an error and return false if the database.yml cannot be found" do
-      Reflection.log.should_receive(:error).with(/Error/)
-      YAML.stub!(:load_file).and_raise(StandardError)
-      @rails.read_database_configuration(@config).should be_false
+    it 'should should dump the database to the target directory' do
+      @mock_database.should_receive(:dump_to_directory).with('target')
+      @rails.stash(@config, @mock_target)
     end
   end
   
-  describe 'database_command_line_options' do
+  describe 'apply' do
     before(:each) do
-      @db_config = { "host" => "localhost", "database" => "test", "username" => "root", "password" => "secret" }
+      @mock_target = mock('Reflection::Directory', :path => 'target')
+      @mock_database = mock('Reflection::Rails::Database')
+      @mock_database.stub!(:recreate!)
+      @mock_database.stub!(:load_dump_from_file)
+      @mock_database.stub!(:clean_dump_file)
+      Reflection::Rails::Database.stub!(:new).and_return(@mock_database)
     end
     
-    it 'should create options for the mysql command' do
-      @rails.database_command_line_options(@db_config).should == "-h localhost -uroot -psecret test"
+    it 'should recreate the database before apply a dump' do
+      @mock_database.should_receive(:recreate!)
+      @rails.apply(@config, @mock_target)
     end
     
-    it 'should ignore the password option if its not available' do
-      @db_config['password'] = ""
-      @rails.database_command_line_options(@db_config).should == "-h localhost -uroot test"
+    it 'should should load the dump from the target directory into the database' do
+      @mock_database.should_receive(:load_dump_from_file).with('target')
+      @rails.apply(@config, @mock_target)
+    end
 
-      @db_config['password'] = nil
-      @rails.database_command_line_options(@db_config).should == "-h localhost -uroot test"
+    it 'should should remove the dump file from target' do
+      @mock_database.should_receive(:clean_dump_file).with('target')
+      @rails.apply(@config, @mock_target)
     end
   end
+  
 end

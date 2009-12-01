@@ -9,6 +9,7 @@ Spec::Runner.configure do |config|
     @global_mock_log = mock('Log')
     @global_mock_log.stub!(:debug)
     @global_mock_log.stub!(:info)
+    @global_mock_log.stub!(:error)
     Reflection.stub!(:log).and_return(@global_mock_log)
   end
 end

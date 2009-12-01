@@ -1,5 +1,8 @@
 module Reflection
   module Rails
+    
+    autoload :Database, 'reflection/rails/database'
+    
     class << self
       
       def validate_environment(config)
@@ -9,52 +12,26 @@ module Reflection
         end
       end
       
-      def clean_target(target_directory)
-        target_file_path = File.join(target_directory.path, '_rails_database_dump.sql')
-        if File.exist?(target_file_path)
-          %x(rm #{target_file_path})          
-        end
-      end
-      
-      def database_command_line_options(database_config)
-        options = []
-        options <<  "-h #{database_config['host']}"
-        options <<  "-u#{database_config['username']}"
-        options <<  "-p#{database_config['password']}" if database_config['password'] && !database_config['password'].empty?
-        options <<  "#{database_config['database']}"
-        options.join(' ')
-      end
-      
-      def read_database_configuration(config)
-        begin
-          database_path = File.join(config.rails_root, "config/database.yml")
-          if db_config = YAML.load_file(database_path)[config.rails_environment]
-            return db_config
-          else
-            Reflection.log.error("Rails database configuration for '#{config.rails_environment}' isn't available in #{database_path}")
-            return false
-          end
-        rescue => e
-          Reflection.log.error("Error while parsing Rails database configuration: #{e}")
-          return false
-        end
+      # TODO: 
+      # Method is obsolete and has moved to Rails::Database
+      # Cannot be removed atm because Command::Stash depends on it
+      def clean_target(config, target_directory)
+        database = Database.new(config.rails_root, config.rails_environment)
+        database.clean_dump_file(target_directory.path)
       end
       
       def stash(config, target_directory)
         Reflection.log.debug "Stashing database dump.."
-        return unless database_config = read_database_configuration(config)
-        options = database_command_line_options(database_config)
-        target_file_path = File.join(target_directory.path, '_rails_database_dump.sql')
-        %x(mysqldump #{options} --add-drop-table > #{target_file_path})
+        database = Database.new(config.rails_root, config.rails_environment)
+        database.dump_to_directory(target_directory.path)
       end
     
       def apply(config, target_directory)
         Reflection.log.debug "Applying database dump.."        
-        return unless database_config = read_database_configuration(config)
-        options = database_command_line_options(database_config)
-        target_file_path = File.join(target_directory.path, '_rails_database_dump.sql')
-        %x(mysql #{options} < #{target_file_path})
-        clean_target(target_directory)
+        database = Database.new(config.rails_root, config.rails_environment)
+        database.recreate!
+        database.load_dump_from_file(target_directory.path)
+        database.clean_dump_file(target_directory.path)
       end
       
     end

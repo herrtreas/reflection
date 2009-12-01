@@ -85,6 +85,7 @@ describe Reflection::Command::Stash do
     
     it 'should call the stash command on the database dumper if enabled' do
       @config.rails_root = "/rails/root"
+      Reflection::Rails.stub!(:clean_target)
       Reflection::Rails.should_receive(:stash).with(@config, @mock_target_directory)
       @subject.stash_directory_into_repository(@mock_stash_directory, @mock_target_directory)
     end

@@ -39,7 +39,7 @@ module Reflection
         Reflection::Rails.stash(config, target_directory) if config.rails_root
         commit_and_push_files(target_directory.path, target_directory.name)
         move_stash_repository_git_index_back(target_directory.git_index, stash_directory.path)
-        Reflection::Rails.clean_target(target_directory) if config.rails_root
+        Reflection::Rails.clean_target(config, target_directory) if config.rails_root
       end
 
 
