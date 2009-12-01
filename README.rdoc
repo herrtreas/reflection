@@ -14,11 +14,7 @@ It provides two main command modes:
 
 Reflection is a gem, hosted on Gemcutter:
 
-
-  gem install gemcutter
-  gem tumble
   gem install reflection
-
 
 
 == Stashing your production data 
