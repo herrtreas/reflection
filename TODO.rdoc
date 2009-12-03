@@ -18,8 +18,8 @@
 * Objects that take care of getting data from or to a system
 * Objects must respond to #apply and #stash
 * Types:
-** Database (can get information from Rails Apps)
-** Directories/Files
+  * Database (can get information from Rails Apps)
+  * Directories/Files
 
 
 === Bundles
@@ -33,6 +33,6 @@
 
 * A place to store stashed data (bundle.stash)
 * Types:
-** Git
-** S3
-** Filesystem
+  * Git
+  * S3
+  * Filesystem
