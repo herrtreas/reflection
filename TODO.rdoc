@@ -1,0 +1,38 @@
+= TODO
+
+== Fixes
+
+* Rails: Database: Broken Encoding
+
+
+== Enhancements
+
+* Replace CLI handing with Thor (http://github.com/wycats/thor)
+* Add Logger (Reflection::Support.log)
+* Callbacks
+* Remove ruby-git dependency
+
+
+=== Reflectables
+
+* Objects that take care of getting data from or to a system
+* Objects must respond to #apply and #stash
+* Types:
+** Database (can get information from Rails Apps)
+** Directories/Files
+
+
+=== Bundles
+
+* Defined in a config file
+* Must have a name
+* Can contain any number of reflectables (databases, directories)
+
+
+=== Buckets
+
+* A place to store stashed data (bundle.stash)
+* Types:
+** Git
+** S3
+** Filesystem
