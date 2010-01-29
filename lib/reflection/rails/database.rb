@@ -13,7 +13,8 @@ module Reflection
       end
 
       def dump_to_directory(target_directory)
-        run("mysqldump #{command_line_options} > #{dump_file_path(target_directory)}")
+        Reflection.log.debug "dumping database.."
+        run "mysqldump #{command_line_options} --skip-lock-tables > #{dump_file_path(target_directory)}"
       end
 
       def load_dump_from_file(target_directory)
