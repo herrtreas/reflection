@@ -62,7 +62,7 @@ module Reflection
       def command_line_options(opts = {})
         options = []
         options <<  "-A" if opts[:no_rehash] && opts[:no_rehash] == true
-        options <<  "-h #{configuration['host']}"
+        options <<  "-h #{configuration['host']}" if configuration['host'] && !configuration['host'].empty?
         options <<  "-u#{configuration['username']}"
         options <<  "-p#{configuration['password']}" if configuration['password'] && !configuration['password'].empty?
         options <<  "#{configuration['database']}" unless opts[:skip] && opts[:skip] == :database
