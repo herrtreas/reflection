@@ -56,9 +56,10 @@ module Reflection
     end
     
     def push
-      repo = Git.open(self.path)
+      # repo = Git.open(self.path)
       Reflection.log.debug "Pushing commit.."
-      Reflection.log.debug(repo.push)
+      Reflection.log.debug(%x((cd #{self.path} && git push --force)))
+      # Reflection.log.debug(repo.push)
     end
     
     def pull
