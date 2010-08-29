@@ -57,6 +57,12 @@ describe Reflection::Rails do
       @mock_database.should_receive(:migrate!)
       @rails.apply(@config, @mock_target)
     end
+
+    it 'should not should migrate the database after applying a dump when skip-migration is set' do
+      @config.skip_migration = true
+      @mock_database.should_not_receive(:migrate!)
+      @rails.apply(@config, @mock_target)
+    end
   end
   
 end

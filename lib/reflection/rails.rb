@@ -32,7 +32,7 @@ module Reflection
         database.recreate!
         database.load_dump_from_file(target_directory.path)
         database.clean_dump_file(target_directory.path)
-        database.migrate!
+        database.migrate! unless config.skip_migration
       end
       
     end

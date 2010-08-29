@@ -10,6 +10,7 @@ module Reflection
     
     attr_accessor :command
     attr_accessor :directory
+    attr_accessor :skip_migration
     attr_accessor :repository
     attr_accessor :rails_root
     attr_accessor :rails_environment
@@ -35,6 +36,7 @@ module Reflection
       { 
         :command => self.command, 
         :directory => self.directory,
+        :skip_migration => self.skip_migration,
         :repository => self.repository, 
         :rails_root => self.rails_root,
         :rails_environment => self.rails_environment,
@@ -46,6 +48,7 @@ module Reflection
     def from_hash(hash)
       self.command = hash[:command]
       self.directory = hash[:directory]
+      self.skip_migration = hash[:skip_migration]
       self.repository = hash[:repository]
       self.rails_root = hash[:rails_root]
       self.rails_environment = hash[:rails_environment]
@@ -91,6 +94,10 @@ module Reflection
         opts.separator "On the client side:"
         opts.on("-a", "--apply", "Apply assets and/or a database dump loaded from a git-repository.") do |apply|
           self.command = :apply
+        end
+
+        opts.on("--skip-migration", "Skip the rails migration when applying the database dump") do
+          self.skip_migration = true
         end
 
         opts.separator " "
