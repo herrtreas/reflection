@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.extra_rdoc_files = [
     "LICENSE",
      "README.rdoc",
-     "TODO"
+     "TODO.rdoc"
   ]
   s.files = [
     ".document",
@@ -32,7 +32,7 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "Reflection.gemspec",
-     "TODO",
+     "TODO.rdoc",
      "VERSION",
      "bin/reflection",
      "doc/Reflection.html",
