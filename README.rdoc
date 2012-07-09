@@ -89,6 +89,7 @@ If you have a <tt>reflection.yml</tt> config file in your current application-de
       -s, --stash                      Store your assets and/or a database dump in a git-repository.
   On the client side:
       -a, --apply                      Apply assets and/or a database dump loaded from a git-repository.
+      --skip-migration                 Skip the rails migration when applying the database dump
  
   Required options for both:
       -r, --repository GIT_URL         A Git repository(url) to be used as storage

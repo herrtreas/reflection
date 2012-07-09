@@ -5,6 +5,7 @@ describe Reflection::Config do
     @valid_options = { 
       :command => :stash, 
       :repository => 'repo', 
+      :skip_migration => true,
       :directory => 'dir', 
       :rails_root => "rails_root", 
       :rails_environment => 'development',
@@ -47,6 +48,7 @@ describe Reflection::Config do
     it 'should turn its attributes into a hash' do
       @config = Reflection::Config.new
       @config.command = :stash
+      @config.skip_migration = true
       @config.repository = 'repo'
       @config.directory = 'dir'
       @config.rails_root = 'rails_root'
@@ -62,6 +64,7 @@ describe Reflection::Config do
       @config = Reflection::Config.new
       @config.from_hash( @valid_options )
       @config.command.should eql(:stash)
+      @config.skip_migration.should be_true
       @config.repository.should eql('repo')
       @config.directory.should eql('dir')
       @config.rails_root.should eql('rails_root')

@@ -14,7 +14,7 @@ module Reflection
 
       def dump_to_directory(target_directory)
         Reflection.log.debug "dumping database.."
-        run "mysqldump #{command_line_options} --skip-lock-tables > #{dump_file_path(target_directory)}"
+        run("mysqldump #{command_line_options(:single_transaction => true)} > #{dump_file_path(target_directory)}")
       end
 
       def load_dump_from_file(target_directory)
@@ -63,6 +63,7 @@ module Reflection
       def command_line_options(opts = {})
         options = []
         options <<  "-A" if opts[:no_rehash] && opts[:no_rehash] == true
+        options <<  "--single-transaction" if opts[:single_transaction]
         options <<  "-h #{configuration['host']}" if configuration['host'] && !configuration['host'].empty?
         options <<  "-u#{configuration['username']}"
         options <<  "-p#{configuration['password']}" if configuration['password'] && !configuration['password'].empty?
